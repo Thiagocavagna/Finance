@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Register));
             label7 = new Label();
             label5 = new Label();
             label3 = new Label();
@@ -156,6 +157,7 @@
             Controls.Add(label7);
             Controls.Add(panel2);
             Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(5, 6, 5, 6);
             MaximizeBox = false;
             Name = "Register";
