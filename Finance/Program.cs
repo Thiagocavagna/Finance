@@ -15,12 +15,12 @@ namespace Finance
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            using (var dbContext = new FinanceDbContext())
-            {
-                dbContext.Database.EnsureCreated(); // Garante que o banco de dados seja criado (apenas para fins de desenvolvimento)
+            //using (var dbContext = new FinanceDbContext())
+            //{
+            //    dbContext.Database.EnsureCreated(); // Garante que o banco de dados seja criado (apenas para fins de desenvolvimento)
 
                 Application.Run(new Form1());
-            }
+            //}
         }
     }
 }
