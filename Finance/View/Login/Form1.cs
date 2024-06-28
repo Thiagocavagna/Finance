@@ -1,3 +1,5 @@
+using System.Xml.Linq;
+
 namespace MeuProjeto
 {
     public partial class Login : Form
@@ -23,11 +25,8 @@ namespace MeuProjeto
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
-            
-            Register register = new Register();
-            register.Show();
-            this.Visible = false;
+        { 
+            te
         }
     }
 }

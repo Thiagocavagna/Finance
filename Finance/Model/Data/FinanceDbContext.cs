@@ -3,9 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Finance.Model.Data
 {
-    public class FinanceDbContext : DbContext
+    public class _dbContext : DbContext
     {
-
         public DbSet<Category> Categories { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<User> Users { get; set; }
