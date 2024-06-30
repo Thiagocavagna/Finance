@@ -8,10 +8,10 @@ namespace Finance.Model.Data.Mapping
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-            builder.ToTable("User");
+            builder.ToTable("Category");
 
             builder.Property(x => x.Id)
-                .HasColumnName("UserId");
+                .HasColumnName("CategoryId");
 
             builder.Property(x => x.Name)
                 .HasColumnType("varchar(100)")

@@ -9,10 +9,10 @@ namespace Finance.Model.Data.Mapping
     {
         public void Configure(EntityTypeBuilder<Transaction> builder)
         {
-            builder.ToTable("User");
+            builder.ToTable("Trasaction");
 
             builder.Property(x => x.Id)
-                .HasColumnName("UserId");
+                .HasColumnName("TrasactionId");
 
             builder.Property(x => x.Description)
                 .HasColumnType("varchar(100)")

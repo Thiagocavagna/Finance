@@ -1,26 +1,37 @@
 using Finance.Model.Data;
-using System.Windows.Forms;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Finance
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            //using (var dbContext = new FinanceDbContext())
-            //{
-            //    dbContext.Database.EnsureCreated(); // Garante que o banco de dados seja criado (apenas para fins de desenvolvimento)
+            var configuration = new ConfigurationBuilder()
+               .SetBasePath(Directory.GetCurrentDirectory())
+               .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+               .Build();
 
-                Application.Run(new Form1());
-            //}
+            var services = new ServiceCollection();
+            ConfigureServices(services, configuration);
+
+            var serviceProvider = services.BuildServiceProvider();
+            var context = serviceProvider.GetRequiredService<FinanceDbContext>();
+            context.Database.EnsureCreated();
+
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
+        }
+
+        private static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddDbContext<FinanceDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         }
     }
 }
