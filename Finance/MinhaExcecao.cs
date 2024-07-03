@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Finance.Controller.Services
+namespace Finance
 {
-    public class UserService : IUserService
+    internal class MinhaExcecao : Exception
     {
+        public MinhaExcecao(string msg) : base(msg) { }
     }
 }

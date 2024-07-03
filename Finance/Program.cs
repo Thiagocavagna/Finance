@@ -1,4 +1,5 @@
 using Finance.Model.Data;
+using MeuProjeto;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,7 +26,7 @@ namespace Finance
             context.Database.EnsureCreated();
 
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Login());
         }
 
         private static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
