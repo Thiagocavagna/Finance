@@ -1,4 +1,5 @@
 using Finance.Model.Data;
+using Finance.View.Planner;
 using MeuProjeto;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -26,7 +27,7 @@ namespace Finance
             context.Database.EnsureCreated();
 
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            Application.Run(new Planner());
         }
 
         private static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
