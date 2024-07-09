@@ -9,8 +9,7 @@ namespace Finance.Data.Repositories
 
         public UserRepository()
         {
-            var optionsBuilder = new DbContextOptionsBuilder<FinanceDbContext>();
-            _context = new FinanceDbContext(optionsBuilder.Options);
+            _context = new FinanceDbContext();
         }
 
         public void SaveUser(User user)

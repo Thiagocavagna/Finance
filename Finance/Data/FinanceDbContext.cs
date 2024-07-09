@@ -1,23 +1,29 @@
 ﻿using Finance_Project.Model.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Finance.Data
 {
     public class FinanceDbContext : DbContext
     {
-        public FinanceDbContext(DbContextOptions<FinanceDbContext> options) : base(options)
-        {
-        }
-
         public DbSet<Category> Categories { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            base.OnConfiguring(optionsBuilder);
+            if (!optionsBuilder.IsConfigured)
+            {
+                var configuration = new ConfigurationBuilder()
+                  .SetBasePath(Directory.GetCurrentDirectory())
+                  .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                  .Build();
 
-            optionsBuilder.UseSqlServer("Server=thiagocavagna;Database=Finance;Trusted_Connection=True;TrustServerCertificate=True;");
+                var connectionString = configuration.GetConnectionString("DefaultConnection");
+                optionsBuilder.UseSqlServer(connectionString);
+            }
+
+            base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,6 +32,5 @@ namespace Finance.Data
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(FinanceDbContext).Assembly);
         }
-
     }
 }
