@@ -1,4 +1,4 @@
-﻿namespace Finance.Controller.Services
+﻿namespace Finance.Controller.TransactionController
 {
     public interface ITransactionService
     {

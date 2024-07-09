@@ -3,7 +3,7 @@ using Finance_Project.Model.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Finance.Model.Data.Mapping
+namespace Finance.Data.Mapping
 {
     public class TransactionMapping : IEntityTypeConfiguration<Transaction>
     {
