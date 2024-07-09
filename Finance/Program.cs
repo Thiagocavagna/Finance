@@ -1,4 +1,4 @@
-using Finance.Model.Data;
+using Finance.Data;
 using Finance.View.Planner;
 using MeuProjeto;
 using Microsoft.EntityFrameworkCore;
@@ -20,14 +20,16 @@ namespace Finance
                .Build();
 
             var services = new ServiceCollection();
-            ConfigureServices(services, configuration);
+            //ConfigureServices(services, configuration);
 
-            var serviceProvider = services.BuildServiceProvider();
-            var context = serviceProvider.GetRequiredService<FinanceDbContext>();
-            context.Database.EnsureCreated();
+            //var serviceProvider = services.BuildServiceProvider();
+            //var context = serviceProvider.GetRequiredService<FinanceDbContext>();
+            //context.Database.EnsureCreated();
 
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Planner());
+
+            //TODO: validar se já existe o usuário cadastrado, se não abrir Login
+            Application.Run(new Login());
         }
 
         private static void ConfigureServices(IServiceCollection services, IConfiguration configuration)

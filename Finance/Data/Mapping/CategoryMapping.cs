@@ -2,27 +2,23 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Finance.Model.Data.Mapping
+namespace Finance.Data.Mapping
 {
-    public class UserMapping : IEntityTypeConfiguration<User>
+    public class CategoryMapping : IEntityTypeConfiguration<Category>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<Category> builder)
         {
-            builder.ToTable("User");
+            builder.ToTable("Category");
 
             builder.Property(x => x.Id)
-                .HasColumnName("UserId");
+                .HasColumnName("CategoryId");
 
             builder.Property(x => x.Name)
                 .HasColumnType("varchar(100)")
                 .IsRequired();
 
-            builder.Property(x => x.Email)
+            builder.Property(x => x.Description)
                 .HasColumnType("varchar(200)")
-                .IsRequired();
-
-            builder.Property(x => x.Password)
-                .HasColumnType("varchar(256)")
                 .IsRequired();
         }
     }

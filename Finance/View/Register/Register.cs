@@ -22,6 +22,8 @@
             string password = txtPassword.Text;
 
             _controller.Register(name, email, password);
+
+            //TODO: encaminhar para a próxima tela se for sucesso
         }
 
         private void button1_Click(object sender, EventArgs e)
