@@ -26,5 +26,40 @@ namespace Finance.View.Planner
         {
 
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void boxRadio1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Planner_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Planner_MaximizedBoundsChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

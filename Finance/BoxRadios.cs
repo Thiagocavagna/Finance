@@ -26,7 +26,7 @@ namespace Finance
                 this.Region = new Region(path);
 
                 // Desenha a borda
-                using (Pen pen = new Pen(Color.White, 1)) // Altere a cor e a espessura conforme necessário
+                using (Pen pen = new Pen(Color.White, 0)) // Altere a cor e a espessura conforme necessário
                 {
                     e.Graphics.DrawPath(pen, path);
                 }
