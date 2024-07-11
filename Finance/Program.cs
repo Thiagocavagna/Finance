@@ -40,7 +40,7 @@ namespace Finance
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao aplicar migrações: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao aplicar migraÃ§Ãµes: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
