@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Finance.Data.Repositories
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly FinanceDbContext _context;
 
@@ -12,15 +12,24 @@ namespace Finance.Data.Repositories
             _context = new FinanceDbContext();
         }
 
-        public void SaveUser(User user)
+        public void Register(User user)
         {
             _context.Users.Add(user);
-            _context.SaveChanges();
         }
 
         public User GetUserByPassword(string password)
         {
-            return _context.Users.FirstOrDefault(u => u.Password == password);
+            return _context.Users.FirstOrDefault(u => u.Password == password)!;
+        }
+
+        public bool IsUserRegistered()
+            => _context.Users.Any();
+
+        public bool Save()
+        {
+            var count = _context.SaveChanges();
+
+            return count > 0;
         }
     }
     

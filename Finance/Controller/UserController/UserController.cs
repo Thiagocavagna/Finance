@@ -1,12 +1,15 @@
-﻿using Finance.Data.Repositories;
+﻿using Finance.Controller;
+using Finance.Data.Repositories;
+using Finance.Helpers.Validations;
 using Finance_Project.Model.Entities;
+using System.Windows.Forms;
 
 public interface IUserController
 {
 
 }
 
-public class UserController : IUserController
+public class UserController : ControllerBase, IUserController
 {
     private readonly UserRepository _repository;
 
@@ -15,8 +18,11 @@ public class UserController : IUserController
         _repository = new UserRepository();
     }
 
-    public void Register(string name, string email, string password)
+    public Result Register(string name, string email, string password)
     {
+        if (!Validations.EmailIsValid(email))
+            return Unsuccessful("Email no formato inválido!");       
+
         var user = new User
         {
             Name = name,
@@ -24,8 +30,12 @@ public class UserController : IUserController
             Password = password
         };
 
-        _repository.SaveUser(user);
-        MessageBox.Show("Usuario registrado com sucesso!");
+        _repository.Register(user);
+
+        if (!_repository.Save())
+            return Unsuccessful("Falha ao salvar o usuário!");
+
+        return Successful("Usuário cadastrado com sucesso!");
     }
 
     public bool Login(string password)

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label7 = new Label();
             label5 = new Label();
             label3 = new Label();
@@ -35,10 +36,11 @@
             txtPassword = new TextBox();
             txtEmail = new TextBox();
             panel2 = new Panel();
-            button1 = new Button();
             label4 = new Label();
             button2 = new Button();
+            errorProvider = new ErrorProvider(components);
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             SuspendLayout();
             // 
             // label7
@@ -75,11 +77,13 @@
             // 
             // txtName
             // 
+            txtName.AcceptsTab = true;
             txtName.Location = new Point(34, 55);
             txtName.Margin = new Padding(5, 6, 5, 6);
             txtName.Name = "txtName";
             txtName.Size = new Size(306, 35);
-            txtName.TabIndex = 3;
+            txtName.TabIndex = 1;
+            txtName.Validating += txtName_Validating;
             // 
             // txtPassword
             // 
@@ -88,7 +92,8 @@
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = 'x';
             txtPassword.Size = new Size(306, 35);
-            txtPassword.TabIndex = 2;
+            txtPassword.TabIndex = 3;
+            txtPassword.Validating += txtPassword_Validating;
             // 
             // txtEmail
             // 
@@ -96,13 +101,13 @@
             txtEmail.Margin = new Padding(5, 6, 5, 6);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(306, 35);
-            txtEmail.TabIndex = 1;
+            txtEmail.TabIndex = 2;
+            txtEmail.Validating += txtEmail_Validating;
             // 
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panel2.BackColor = SystemColors.ControlLightLight;
-            panel2.Controls.Add(button1);
             panel2.Controls.Add(label5);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label3);
@@ -116,17 +121,6 @@
             panel2.Size = new Size(371, 349);
             panel2.TabIndex = 6;
             // 
-            // button1
-            // 
-            button1.Location = new Point(34, 290);
-            button1.Margin = new Padding(10, 12, 10, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(141, 47);
-            button1.TabIndex = 7;
-            button1.Text = "Voltar";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -139,14 +133,18 @@
             // 
             // button2
             // 
-            button2.Location = new Point(199, 290);
+            button2.Location = new Point(34, 290);
             button2.Margin = new Padding(10, 12, 10, 12);
             button2.Name = "button2";
-            button2.Size = new Size(141, 47);
-            button2.TabIndex = 0;
+            button2.Size = new Size(306, 47);
+            button2.TabIndex = 3;
             button2.Text = "Cadastrar";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
+            // 
+            // errorProvider
+            // 
+            errorProvider.ContainerControl = this;
             // 
             // Register
             // 
@@ -163,6 +161,7 @@
             Text = "Register";
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -178,6 +177,6 @@
         private Panel panel2;
         private Label label4;
         private Button button2;
-        private Button button1;
+        private ErrorProvider errorProvider;
     }
 }
