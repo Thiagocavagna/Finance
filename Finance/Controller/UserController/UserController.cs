@@ -1,7 +1,12 @@
-﻿using Finance_Project.Model.Entities;
-using static Finance.Controller.Services.UserControllers;
+﻿using Finance.Data.Repositories;
+using Finance_Project.Model.Entities;
 
-public class UserController
+public interface IUserController
+{
+
+}
+
+public class UserController : IUserController
 {
     private readonly UserRepository _repository;
 
