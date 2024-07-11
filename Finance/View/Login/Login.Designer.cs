@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            btnRegister = new Button();
             txtPassword = new TextBox();
             label2 = new Label();
             btnLogin = new Button();
@@ -40,7 +39,6 @@
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panel1.BackColor = SystemColors.ButtonFace;
-            panel1.Controls.Add(btnRegister);
             panel1.Controls.Add(txtPassword);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(btnLogin);
@@ -50,24 +48,12 @@
             panel1.Size = new Size(340, 310);
             panel1.TabIndex = 0;
             // 
-            // btnRegister
-            // 
-            btnRegister.BackColor = SystemColors.ActiveCaption;
-            btnRegister.Font = new Font("Verdana", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnRegister.Location = new Point(181, 195);
-            btnRegister.Margin = new Padding(6);
-            btnRegister.Name = "btnRegister";
-            btnRegister.Size = new Size(146, 46);
-            btnRegister.TabIndex = 3;
-            btnRegister.Text = "Registrar";
-            btnRegister.UseVisualStyleBackColor = false;
-            btnRegister.Click += btnRegister_Click;
-            // 
             // txtPassword
             // 
             txtPassword.Location = new Point(18, 119);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(309, 44);
+            txtPassword.PasswordChar = '*';
+            txtPassword.Size = new Size(309, 37);
             txtPassword.TabIndex = 2;
             // 
             // label2
@@ -75,7 +61,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(56, 80);
             label2.Name = "label2";
-            label2.Size = new Size(249, 36);
+            label2.Size = new Size(194, 29);
             label2.TabIndex = 1;
             label2.Text = "Digite a senha:";
             // 
@@ -86,7 +72,7 @@
             btnLogin.Location = new Point(18, 195);
             btnLogin.Margin = new Padding(6);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(116, 46);
+            btnLogin.Size = new Size(309, 46);
             btnLogin.TabIndex = 0;
             btnLogin.Text = "Logar";
             btnLogin.UseVisualStyleBackColor = false;
@@ -94,7 +80,7 @@
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(19F, 36F);
+            AutoScaleDimensions = new SizeF(15F, 29F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(375, 340);
@@ -118,6 +104,5 @@
         private Button btnLogin;
         private Label label2;
         private TextBox txtPassword;
-        private Button btnRegister;
     }
 }

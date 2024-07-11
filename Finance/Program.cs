@@ -1,4 +1,5 @@
 using Finance.Data;
+using Finance.Data.Repositories;
 using Finance.View.Planner;
 using MeuProjeto;
 using Microsoft.EntityFrameworkCore;
@@ -14,31 +15,20 @@ namespace Finance
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-
-            //var configuration = new ConfigurationBuilder()
-            //   .SetBasePath(Directory.GetCurrentDirectory())
-            //   .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-            //   .Build();
-
-            var services = new ServiceCollection();
-            //ConfigureServices(services, configuration);
-
-            //var serviceProvider = services.BuildServiceProvider();
-            //var context = serviceProvider.GetRequiredService<FinanceDbContext>();
-            //context.Database.EnsureCreated();
+          
+            var services = new ServiceCollection();            
             ApplyMigrations();
 
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //TODO: validar se já existe o usuário cadastrado, se não abrir Login
-            Application.Run(new Register());
-        }
+            var userRepository = new UserRepository();
 
-        private static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddDbContext<FinanceDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            if(userRepository.IsUserRegistered())
+                Application.Run(new Login());
+            else
+                Application.Run(new Register());
         }
+  
         private static void ApplyMigrations()
         {
             try

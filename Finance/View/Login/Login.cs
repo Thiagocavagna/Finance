@@ -1,3 +1,5 @@
+using Finance.View.Planner;
+
 namespace MeuProjeto
 {
     public partial class Login : Form
@@ -23,15 +25,15 @@ namespace MeuProjeto
 
             if (isValid)
             {
-                MessageBox.Show("Login successful!");
-                // Continue to the next form or functionality
+                Planner formPrincipal = new();               
+                formPrincipal.Show();
+
+                this.Hide(); //TODO: this.Close() está fechando tudo
             }
             else
             {
-                MessageBox.Show("Invalid password!");
+                MessageBox.Show("Senha Inválida!");                
             }
-
-            //TODO: encaminhar para a próxima tela
         }
 
         private void Form1_Load(object sender, EventArgs e)

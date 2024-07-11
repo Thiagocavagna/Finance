@@ -36,9 +36,11 @@ namespace Finance.Data.Repositories
             _context.Categories.Remove(category);
         }
 
-        public void Save()
+        public bool Save()
         {
-            _context.SaveChanges();
+            var count = _context.SaveChanges();
+
+            return count > 0;
         }
     }
 }
