@@ -61,5 +61,10 @@ namespace Finance.View.Planner
         {
 
         }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace Finance
             Application.SetCompatibleTextRenderingDefault(false);
 
             //TODO: validar se já existe o usuário cadastrado, se não abrir Login
-            Application.Run(new Register());
+            Application.Run(new Planner());
         }
 
         private static void ConfigureServices(IServiceCollection services, IConfiguration configuration)

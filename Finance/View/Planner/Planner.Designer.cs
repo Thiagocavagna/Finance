@@ -31,9 +31,6 @@
             menuStrip1 = new MenuStrip();
             passwordToolStripMenuItem = new ToolStripMenuItem();
             relatorioToolStripMenuItem = new ToolStripMenuItem();
-            boxRadio1 = new BoxRadio();
-            label3 = new Label();
-            label2 = new Label();
             button1 = new Button();
             panel4 = new Panel();
             radioButton2 = new RadioButton();
@@ -42,11 +39,14 @@
             label1 = new Label();
             textBox1 = new TextBox();
             panel2 = new Panel();
+            label4 = new Label();
             boxRadio5 = new BoxRadio();
+            label3 = new Label();
+            label2 = new Label();
             boxRadio4 = new BoxRadio();
+            btnAdd = new Button();
             comboBox1 = new ComboBox();
             boxRadio2 = new BoxRadio();
-            label4 = new Label();
             boxRadio3 = new BoxRadio();
             dataGridView1 = new DataGridView();
             Descricao = new DataGridViewTextBoxColumn();
@@ -58,7 +58,6 @@
             pageSetupDialog1 = new PageSetupDialog();
             button2 = new Button();
             menuStrip1.SuspendLayout();
-            boxRadio1.SuspendLayout();
             panel4.SuspendLayout();
             panel2.SuspendLayout();
             boxRadio5.SuspendLayout();
@@ -73,67 +72,32 @@
             menuStrip1.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             menuStrip1.ImageScalingSize = new Size(20, 20);
             menuStrip1.Items.AddRange(new ToolStripItem[] { passwordToolStripMenuItem, relatorioToolStripMenuItem });
-            menuStrip1.Location = new Point(3, 3);
+            menuStrip1.Location = new Point(3, 2);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1158, 31);
+            menuStrip1.Padding = new Padding(5, 2, 0, 2);
+            menuStrip1.Size = new Size(1113, 27);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
             // passwordToolStripMenuItem
             // 
             passwordToolStripMenuItem.Name = "passwordToolStripMenuItem";
-            passwordToolStripMenuItem.Size = new Size(94, 27);
+            passwordToolStripMenuItem.Size = new Size(79, 23);
             passwordToolStripMenuItem.Text = "Password";
             // 
             // relatorioToolStripMenuItem
             // 
             relatorioToolStripMenuItem.ForeColor = SystemColors.ActiveCaptionText;
             relatorioToolStripMenuItem.Name = "relatorioToolStripMenuItem";
-            relatorioToolStripMenuItem.Size = new Size(92, 27);
+            relatorioToolStripMenuItem.Size = new Size(75, 23);
             relatorioToolStripMenuItem.Text = "Relatório";
-            // 
-            // boxRadio1
-            // 
-            boxRadio1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            boxRadio1.AutoSize = true;
-            boxRadio1.BackColor = SystemColors.ControlDark;
-            boxRadio1.BorderRadius = 20;
-            boxRadio1.Controls.Add(label3);
-            boxRadio1.Controls.Add(label2);
-            boxRadio1.Location = new Point(45, 24);
-            boxRadio1.Name = "boxRadio1";
-            boxRadio1.Size = new Size(285, 150);
-            boxRadio1.TabIndex = 8;
-            boxRadio1.Paint += boxRadio1_Paint;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Swis721 BlkCn BT", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = SystemColors.Control;
-            label3.Location = new Point(23, 54);
-            label3.Name = "label3";
-            label3.Size = new Size(235, 96);
-            label3.TabIndex = 1;
-            label3.Text = "22:35";
-            label3.Click += label3_Click;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Verdana", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = SystemColors.ButtonFace;
-            label2.Location = new Point(5, 11);
-            label2.Name = "label2";
-            label2.Size = new Size(277, 48);
-            label2.TabIndex = 0;
-            label2.Text = "Hora Atual:";
             // 
             // button1
             // 
-            button1.Location = new Point(17, 408);
+            button1.Location = new Point(15, 306);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(347, 47);
+            button1.Size = new Size(282, 43);
             button1.TabIndex = 7;
             button1.Text = "Salvar";
             button1.UseVisualStyleBackColor = true;
@@ -143,17 +107,19 @@
             panel4.BackColor = SystemColors.ButtonShadow;
             panel4.Controls.Add(radioButton2);
             panel4.Controls.Add(radioButton1);
-            panel4.Location = new Point(17, 320);
+            panel4.Location = new Point(15, 240);
+            panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(347, 45);
+            panel4.Size = new Size(282, 40);
             panel4.TabIndex = 6;
             // 
             // radioButton2
             // 
             radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(197, 2);
+            radioButton2.Location = new Point(172, 2);
+            radioButton2.Margin = new Padding(3, 2, 3, 2);
             radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(104, 42);
+            radioButton2.Size = new Size(83, 34);
             radioButton2.TabIndex = 5;
             radioButton2.TabStop = true;
             radioButton2.Text = "Saída";
@@ -165,9 +131,10 @@
             radioButton1.AutoSize = true;
             radioButton1.BackColor = Color.Transparent;
             radioButton1.ForeColor = Color.Black;
-            radioButton1.Location = new Point(43, 2);
+            radioButton1.Location = new Point(38, 2);
+            radioButton1.Margin = new Padding(3, 2, 3, 2);
             radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(131, 42);
+            radioButton1.Size = new Size(104, 34);
             radioButton1.TabIndex = 4;
             radioButton1.TabStop = true;
             radioButton1.Text = "Entrada";
@@ -177,47 +144,60 @@
             // 
             dateTimePicker1.CalendarForeColor = SystemColors.ActiveBorder;
             dateTimePicker1.CalendarTitleForeColor = SystemColors.ActiveBorder;
-            dateTimePicker1.Location = new Point(17, 229);
+            dateTimePicker1.Location = new Point(15, 172);
+            dateTimePicker1.Margin = new Padding(3, 2, 3, 2);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(348, 43);
+            dateTimePicker1.Size = new Size(283, 36);
             dateTimePicker1.TabIndex = 0;
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(67, 18);
+            label1.Location = new Point(58, 14);
             label1.Name = "label1";
-            label1.Size = new Size(314, 31);
+            label1.Size = new Size(262, 25);
             label1.TabIndex = 1;
             label1.Text = "Preencha os campos abaixo:";
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(17, 52);
+            textBox1.Location = new Point(15, 39);
+            textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Valor";
-            textBox1.Size = new Size(347, 43);
+            textBox1.Size = new Size(282, 36);
             textBox1.TabIndex = 0;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel2.AutoSize = true;
             panel2.BackColor = SystemColors.Window;
+            panel2.Controls.Add(label4);
             panel2.Controls.Add(boxRadio5);
             panel2.Controls.Add(boxRadio4);
             panel2.Controls.Add(boxRadio2);
-            panel2.Controls.Add(label4);
             panel2.Controls.Add(boxRadio3);
             panel2.Controls.Add(label1);
-            panel2.Location = new Point(-7, 37);
+            panel2.Location = new Point(6, 31);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Padding = new Padding(5);
-            panel2.Size = new Size(2341, 14316);
+            panel2.Padding = new Padding(4);
+            panel2.Size = new Size(1107, 611);
             panel2.TabIndex = 3;
             panel2.Paint += panel2_Paint;
+            // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(558, 14);
+            label4.Name = "label4";
+            label4.Size = new Size(0, 25);
+            label4.TabIndex = 6;
             // 
             // boxRadio5
             // 
@@ -225,13 +205,36 @@
             boxRadio5.AutoSize = true;
             boxRadio5.BackColor = SystemColors.ActiveBorder;
             boxRadio5.BorderRadius = 40;
-            boxRadio5.Controls.Add(boxRadio1);
-            boxRadio5.Location = new Point(22, 603);
-            boxRadio5.MaximumSize = new Size(1890, 204);
-            boxRadio5.MinimumSize = new Size(1140, 204);
+            boxRadio5.Controls.Add(label3);
+            boxRadio5.Controls.Add(label2);
+            boxRadio5.Location = new Point(7, 488);
+            boxRadio5.Margin = new Padding(3, 2, 3, 2);
             boxRadio5.Name = "boxRadio5";
-            boxRadio5.Size = new Size(1143, 204);
+            boxRadio5.Size = new Size(1093, 131);
             boxRadio5.TabIndex = 5;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Microsoft Sans Serif", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = SystemColors.Control;
+            label3.Location = new Point(67, 46);
+            label3.Name = "label3";
+            label3.Size = new Size(194, 73);
+            label3.TabIndex = 1;
+            label3.Text = "22:35";
+            label3.Click += label3_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Verdana", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = SystemColors.ButtonFace;
+            label2.Location = new Point(53, 10);
+            label2.Name = "label2";
+            label2.Size = new Size(222, 38);
+            label2.TabIndex = 0;
+            label2.Text = "Hora Atual:";
             // 
             // boxRadio4
             // 
@@ -241,26 +244,40 @@
             boxRadio4.BackColor = SystemColors.ActiveBorder;
             boxRadio4.BorderRadius = 40;
             boxRadio4.Controls.Add(button2);
+            boxRadio4.Controls.Add(btnAdd);
             boxRadio4.Controls.Add(comboBox1);
             boxRadio4.Controls.Add(textBox1);
             boxRadio4.Controls.Add(button1);
             boxRadio4.Controls.Add(panel4);
             boxRadio4.Controls.Add(dateTimePicker1);
             boxRadio4.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            boxRadio4.Location = new Point(22, 61);
-            boxRadio4.MaximumSize = new Size(384, 900);
-            boxRadio4.MinimumSize = new Size(384, 536);
+            boxRadio4.Location = new Point(7, 43);
+            boxRadio4.Margin = new Padding(3, 2, 3, 2);
             boxRadio4.Name = "boxRadio4";
-            boxRadio4.Padding = new Padding(5);
-            boxRadio4.Size = new Size(384, 536);
+            boxRadio4.Padding = new Padding(4);
+            boxRadio4.Size = new Size(347, 441);
             boxRadio4.TabIndex = 1;
+            // 
+            // btnAdd
+            // 
+            btnAdd.BackColor = SystemColors.ActiveBorder;
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.ForeColor = SystemColors.ActiveBorder;
+            btnAdd.Image = Properties.Resources.iconAdd25x25;
+            btnAdd.Location = new Point(260, 105);
+            btnAdd.Margin = new Padding(3, 2, 3, 2);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(38, 38);
+            btnAdd.TabIndex = 9;
+            btnAdd.UseVisualStyleBackColor = false;
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(17, 140);
+            comboBox1.Location = new Point(15, 105);
+            comboBox1.Margin = new Padding(3, 2, 3, 2);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(286, 45);
+            comboBox1.Size = new Size(246, 38);
             comboBox1.TabIndex = 8;
             // 
             // boxRadio2
@@ -269,25 +286,12 @@
             boxRadio2.AutoSize = true;
             boxRadio2.BackColor = SystemColors.ActiveBorder;
             boxRadio2.BorderRadius = 40;
-            boxRadio2.Location = new Point(22, 1050);
+            boxRadio2.Location = new Point(19, 3811);
+            boxRadio2.Margin = new Padding(3, 2, 3, 2);
             boxRadio2.Name = "boxRadio2";
-            boxRadio2.Padding = new Padding(5);
-            boxRadio2.Size = new Size(1138, 102);
+            boxRadio2.Padding = new Padding(4);
+            boxRadio2.Size = new Size(5009, 76);
             boxRadio2.TabIndex = 4;
-            // 
-            // label4
-            // 
-            label4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            label4.AutoEllipsis = true;
-            label4.Font = new Font("Geometr415 Blk BT", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(735, 15);
-            label4.Name = "label4";
-            label4.Padding = new Padding(3);
-            label4.Size = new Size(129, 40);
-            label4.TabIndex = 1;
-            label4.Text = "Finanças";
-            label4.TextAlign = ContentAlignment.MiddleCenter;
-            label4.Click += label4_Click;
             // 
             // boxRadio3
             // 
@@ -298,23 +302,24 @@
             boxRadio3.BackColor = SystemColors.ActiveBorder;
             boxRadio3.BorderRadius = 40;
             boxRadio3.Controls.Add(dataGridView1);
-            boxRadio3.Location = new Point(412, 61);
-            boxRadio3.MaximumSize = new Size(1500, 900);
-            boxRadio3.MinimumSize = new Size(750, 536);
+            boxRadio3.Location = new Point(360, 43);
+            boxRadio3.Margin = new Padding(3, 2, 3, 2);
             boxRadio3.Name = "boxRadio3";
-            boxRadio3.Padding = new Padding(5);
-            boxRadio3.Size = new Size(758, 536);
+            boxRadio3.Padding = new Padding(4);
+            boxRadio3.Size = new Size(740, 441);
             boxRadio3.TabIndex = 0;
             // 
             // dataGridView1
             // 
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Descricao, Valor, Data, Tipo, Categoria, Excluir });
-            dataGridView1.Location = new Point(8, 8);
+            dataGridView1.Location = new Point(9, 10);
+            dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(742, 518);
+            dataGridView1.Size = new Size(723, 423);
             dataGridView1.TabIndex = 0;
             // 
             // Descricao
@@ -361,27 +366,30 @@
             // 
             // button2
             // 
-            button2.Location = new Point(309, 140);
+            button2.BackColor = SystemColors.ActiveBorder;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.ForeColor = SystemColors.ActiveBorder;
+            button2.Image = Properties.Resources.iconRemove24x24;
+            button2.Location = new Point(302, 105);
+            button2.Margin = new Padding(3, 2, 3, 2);
             button2.Name = "button2";
-            button2.Size = new Size(55, 45);
-            button2.TabIndex = 9;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            button2.Size = new Size(38, 38);
+            button2.TabIndex = 10;
+            button2.UseVisualStyleBackColor = false;
             // 
             // Planner
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlDarkDark;
-            ClientSize = new Size(1164, 853);
-            Controls.Add(menuStrip1);
+            BackColor = SystemColors.ButtonHighlight;
+            ClientSize = new Size(1119, 646);
             Controls.Add(panel2);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            MaximizeBox = false;
-            MinimumSize = new Size(1182, 900);
+            Margin = new Padding(3, 2, 3, 2);
+            MinimumSize = new Size(1036, 685);
             Name = "Planner";
-            Padding = new Padding(3);
+            Padding = new Padding(3, 2, 3, 2);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Planner";
             WindowState = FormWindowState.Maximized;
@@ -389,8 +397,6 @@
             Load += Planner_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
-            boxRadio1.ResumeLayout(false);
-            boxRadio1.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             panel2.ResumeLayout(false);
@@ -419,11 +425,7 @@
         private Panel panel4;
         private Button button1;
         private PageSetupDialog pageSetupDialog1;
-        private BoxRadio boxRadio1;
-        private Label label3;
-        private Label label2;
         private BoxRadio boxRadio2;
-        private Label label4;
         private BoxRadio boxRadio3;
         private BoxRadio boxRadio4;
         private BoxRadio boxRadio5;
@@ -435,6 +437,10 @@
         private DataGridViewTextBoxColumn Tipo;
         private DataGridViewTextBoxColumn Categoria;
         private DataGridViewButtonColumn Excluir;
+        private Button btnAdd;
+        private Label label3;
+        private Label label2;
+        private Label label4;
         private Button button2;
     }
 }
