@@ -59,7 +59,7 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(55, 145);
+            button1.Location = new Point(234, 145);
             button1.Name = "button1";
             button1.Size = new Size(169, 41);
             button1.TabIndex = 2;
@@ -70,7 +70,7 @@
             // btnAddCategory
             // 
             btnAddCategory.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAddCategory.Location = new Point(230, 145);
+            btnAddCategory.Location = new Point(58, 145);
             btnAddCategory.Name = "btnAddCategory";
             btnAddCategory.Size = new Size(170, 41);
             btnAddCategory.TabIndex = 3;
@@ -86,7 +86,7 @@
             txtDescriptionCategory.Name = "txtDescriptionCategory";
             txtDescriptionCategory.PlaceholderText = "Descrição";
             txtDescriptionCategory.Size = new Size(345, 32);
-            txtDescriptionCategory.TabIndex = 4;
+            txtDescriptionCategory.TabIndex = 2;
             // 
             // RegisterCategory
             // 

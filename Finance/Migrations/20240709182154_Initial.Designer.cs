@@ -56,7 +56,7 @@ namespace Finance.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("TrasactionId");
+                        .HasColumnName("TransactionId");
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
@@ -85,7 +85,7 @@ namespace Finance.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Trasaction", (string)null);
+                    b.ToTable("Transaction", (string)null);
                 });
 
             modelBuilder.Entity("Finance_Project.Model.Entities.User", b =>

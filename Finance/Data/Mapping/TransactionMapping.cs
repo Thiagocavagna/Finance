@@ -9,10 +9,10 @@ namespace Finance.Data.Mapping
     {
         public void Configure(EntityTypeBuilder<Transaction> builder)
         {
-            builder.ToTable("Trasaction");
+            builder.ToTable("Transaction");
 
             builder.Property(x => x.Id)
-                .HasColumnName("TrasactionId");
+                .HasColumnName("TransactionId");
 
             builder.Property(x => x.Description)
                 .HasColumnType("varchar(100)")
@@ -26,6 +26,14 @@ namespace Finance.Data.Mapping
                 x => x.ToString(),
                 x => Enum.Parse<TransactionType>(x))
                 .IsRequired();
+
+            builder.HasOne(x => x.Category)
+                .WithMany()
+                .HasForeignKey(x => x.CategoryId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasIndex(x => new { x.Amount, x.Type, x.CategoryId, x.RegisterDate })
+                .IsUnique();
         }
     }
 }

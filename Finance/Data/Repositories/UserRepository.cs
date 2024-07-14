@@ -17,9 +17,9 @@ namespace Finance.Data.Repositories
             _context.Users.Add(user);
         }
 
-        public User GetUserByPassword(string password)
+        public User GetUser()
         {
-            return _context.Users.FirstOrDefault(u => u.Password == password)!;
+            return _context.Users.SingleOrDefault()!;
         }
 
         public bool IsUserRegistered()

@@ -43,10 +43,10 @@ namespace Finance.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Trasaction",
+                name: "Transaction",
                 columns: table => new
                 {
-                    TrasactionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TransactionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Description = table.Column<string>(type: "varchar(100)", nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     RegisterDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -57,9 +57,9 @@ namespace Finance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Trasaction", x => x.TrasactionId);
+                    table.PrimaryKey("PK_Transaction", x => x.TransactionId);
                     table.ForeignKey(
-                        name: "FK_Trasaction_Category_CategoryId",
+                        name: "FK_Transaction_Category_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Category",
                         principalColumn: "CategoryId",
@@ -67,8 +67,8 @@ namespace Finance.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Trasaction_CategoryId",
-                table: "Trasaction",
+                name: "IX_Transaction_CategoryId",
+                table: "Transaction",
                 column: "CategoryId");
         }
 
@@ -76,7 +76,7 @@ namespace Finance.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Trasaction");
+                name: "Transaction");
 
             migrationBuilder.DropTable(
                 name: "User");

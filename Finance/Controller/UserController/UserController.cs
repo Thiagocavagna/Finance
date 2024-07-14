@@ -1,5 +1,6 @@
 ﻿using Finance.Controller;
 using Finance.Data.Repositories;
+using Finance.Helpers;
 using Finance.Helpers.Validations;
 using Finance_Project.Model.Entities;
 using System.Windows.Forms;
@@ -21,13 +22,13 @@ public class UserController : ControllerBase, IUserController
     public Result Register(string name, string email, string password)
     {
         if (!Validations.EmailIsValid(email))
-            return Unsuccessful("Email no formato inválido!");       
+            return Unsuccessful("Email no formato inválido!");
 
         var user = new User
         {
             Name = name,
             Email = email,
-            Password = password
+            Password = password.PasswordHasher()
         };
 
         _repository.Register(user);
@@ -40,7 +41,11 @@ public class UserController : ControllerBase, IUserController
 
     public bool Login(string password)
     {
-        var user = _repository.GetUserByPassword(password);
-        return user != null;
+        var user = _repository.GetUser();
+
+        if(user == null)
+            return false;
+
+        return password.VerifyPassword(user.Password);
     }
 }

@@ -25,14 +25,14 @@ namespace MeuProjeto
 
             if (isValid)
             {
-                Planner formPrincipal = new();               
+                Planner formPrincipal = new();
                 formPrincipal.Show();
 
                 this.Hide(); //TODO: this.Close() est� fechando tudo
             }
             else
             {
-                MessageBox.Show("Senha Inv�lida!");                
+                MessageBox.Show("Senha Inválida!");
             }
         }
 
@@ -56,6 +56,15 @@ namespace MeuProjeto
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnLogin.PerformClick(); 
+                e.SuppressKeyPress = true; 
+            }
         }
     }
 }

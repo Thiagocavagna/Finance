@@ -1,4 +1,5 @@
 ﻿using Finance.Controller.TransactionController;
+using Finance.Data.Repositories;
 using Finance.Model.Enumerations;
 using Finance.View.TCategory;
 using Finance_Project.Model.Entities;
@@ -16,6 +17,7 @@ namespace Finance.View.Planner
             _transactionController = new TransactionController();
 
             LoadCategories();
+            LoadDataIntoDataGridView();
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -91,14 +93,46 @@ namespace Finance.View.Planner
         private void btnExcluir_Click(object sender, EventArgs e)
         {
             var selectedCategory = (Category)cmbCategory.SelectedItem;
-            if (selectedCategory != null)
+
+            if (selectedCategory == null)
+            {
+                MessageBox.Show("Selecione uma categoria para excluir");
+                return;
+            }
+
+            if (_transactionController.HasAnyTransactionWithCategory(selectedCategory.Id))
+            {
+                MessageBox.Show("Não é possível excluir uma categoria que possui transações associadas");
+                return;
+            }
+
+            var confirm = MessageBox.Show("Deseja realmente excluir a categoria?", "Excluir Categoria",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
             {
                 _controller.RemoveCategory(selectedCategory);
                 LoadCategories();
                 cmbCategory.Text = "";
             }
-            else
-                MessageBox.Show("Selecione uma categoria para excluir");
+        }
+
+        private void LoadDataIntoDataGridView()
+        {
+            var transactions = _transactionController.GetAll();
+
+            dvPlanner.Rows.Clear();
+
+            foreach (var transaction in transactions)
+            {
+                dvPlanner.Rows.Add(transaction.Description, transaction.Amount, transaction.RegisterDate, transaction.Type,
+                    transaction.CategoryName);
+            }
+
+            dvPlanner.ReadOnly = true;
+            dvPlanner.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dvPlanner.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dvPlanner.AllowUserToAddRows = false;
         }
 
         private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -111,28 +145,89 @@ namespace Finance.View.Planner
         }
 
         private void btnSave_Click(object sender, EventArgs e)
-        {
-            string description = txtDescription.Text;
-            decimal amount = Convert.ToDecimal(txtAmount.Text);
-            DateTime registerDate = Convert.ToDateTime(DateOfEntryOrExit.Text);
-            TransactionType transactionType;
-            if (rdEntrada.Checked)
+        {            
+            if(ValidateChildren())
             {
-                transactionType = TransactionType.Receipts;
+                string description = txtDescription.Text;
+                decimal amount = num_amount.Value;
+                DateTime registerDate = Convert.ToDateTime(DateOfEntryOrExit.Text);
+                TransactionType transactionType;
+                if (rdEntrada.Checked)
+                {
+                    transactionType = TransactionType.Receipts;
+                }
+                else
+                {
+                    transactionType = TransactionType.Expense;
+                }
+                var category = cmbCategory.SelectedItem as Category;
+
+                if (category == null)
+                {
+                    MessageBox.Show("Selecione uma Categoria", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if(_transactionController.Exists(amount, transactionType, category.Id, registerDate))
+                {
+                    MessageBox.Show("Já existe uma transação com esses dados", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                //TODO: retornar um result
+                _transactionController.SaveTransaction(description, amount, registerDate, transactionType, category);
+
+                LoadDataIntoDataGridView();
+            }           
+        }
+
+        private void txtDescription_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtDescription.Text))
+            {
+                errorProvider1.SetError(txtDescription, "A descrição não pode estar vazia.");
             }
             else
             {
-                transactionType = TransactionType.Expense;
+                errorProvider1.SetError(txtDescription, string.Empty); 
             }
-            var category = cmbCategory.SelectedItem as Category;
-
-            if (category == null)
-            {
-                MessageBox.Show("Selecione uma Categoria", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            _transactionController.SaveTransaction(description, amount, registerDate, transactionType, category);
         }
+
+        private void txtAmount_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (num_amount.Value <= 0)
+            {
+                errorProvider1.SetError(num_amount, "O valor deve ser um número positivo.");
+            }
+            else
+            {
+                errorProvider1.SetError(num_amount, string.Empty); 
+            }
+        }
+
+        private void cmbCategory_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (cmbCategory.SelectedItem == null)
+            {
+                errorProvider1.SetError(cmbCategory, "Selecione uma Categoria.");
+            }
+            else
+            {
+                errorProvider1.SetError(cmbCategory, string.Empty); 
+            }
+        }
+
+        private void DateOfEntryOrExit_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!DateTime.TryParse(DateOfEntryOrExit.Text, out DateTime registerDate))
+            {
+                errorProvider1.SetError(DateOfEntryOrExit, "A data informada é inválida.");
+            }
+            else
+            {
+                errorProvider1.SetError(DateOfEntryOrExit, string.Empty); 
+            }
+        }
+
     }
 }

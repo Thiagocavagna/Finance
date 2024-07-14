@@ -49,8 +49,9 @@ namespace Finance.View.TCategory
             _controller.AddCategory(CategoryName, CategoryDescription);
             CategoryAdded.Invoke(this, EventArgs.Empty);
             txtDescriptionCategory.Text = "";
-            txtNameCategory.Text = ""; 
+            txtNameCategory.Text = "";
 
+            this.Close();
             
         }
     }

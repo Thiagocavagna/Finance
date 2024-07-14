@@ -1,6 +1,7 @@
-﻿using Finance.Data;
-using Finance.Data.Repositories;
+﻿using Finance.Data.Repositories;
+using Finance.Model.Enumerations;
 using Finance_Project.Model.Entities;
+using Microsoft.EntityFrameworkCore;
 
 public class TransactionRepository : BaseRepository, ITransactionRepository
 {
@@ -14,9 +15,20 @@ public class TransactionRepository : BaseRepository, ITransactionRepository
         _context.SaveChanges();
     }
 
-    public IEnumerable<Transaction> GetAll()
+    public List<Transaction> GetAll()
     {
-        throw new System.NotImplementedException();
+        return _context.Transactions.Include(x => x.Category).ToList();
+    }
+
+    public bool HasAnyTrasactionWithCategory(Guid categoryId)
+    {
+        return _context.Transactions.Any(x => x.CategoryId == categoryId); 
+    }
+
+    public bool Exists(decimal amount, TransactionType type, Guid categoryId, DateTime registerDate)
+    {
+        return _context.Transactions.Any(x => x.Amount == amount && x.Type == type && x.CategoryId == categoryId &&
+            x.RegisterDate == registerDate);
     }
 
     public void Delete(Transaction transaction)
