@@ -23,6 +23,9 @@ namespace Finance
 
             var userRepository = new UserRepository();
 
+            var context = new FinanceDbContext();
+            var categoryRepository = new CategoryRepository(context);
+
             if(userRepository.IsUserRegistered())
                 Application.Run(new Login());
             else

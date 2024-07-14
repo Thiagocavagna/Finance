@@ -1,3 +1,4 @@
+using Finance.Data;
 using Finance.View.Planner;
 
 namespace MeuProjeto
@@ -28,11 +29,11 @@ namespace MeuProjeto
                 Planner formPrincipal = new();               
                 formPrincipal.Show();
 
-                this.Hide(); //TODO: this.Close() está fechando tudo
+                this.Hide(); //TODO: this.Close() estï¿½ fechando tudo
             }
             else
             {
-                MessageBox.Show("Senha Inválida!");                
+                MessageBox.Show("Senha Invï¿½lida!");                
             }
         }
 
