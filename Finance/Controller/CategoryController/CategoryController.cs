@@ -22,4 +22,9 @@ public class CategoryController
         _repository.Add(category);
         _repository.Save();
     }
+
+    public void RemoveCategory(Category category) {
+        _repository.Delete(category);
+        _repository.Save();
+    }
 }

@@ -51,7 +51,7 @@ namespace MeuProjeto
             if (string.IsNullOrWhiteSpace(nome))
             {
                 errorProvider.SetError(txtName, "Campo de nome não pode estar vazio.");
-                e.Cancel = false;               
+                e.Cancel = false;
             }
             else if (nome.Length < 3)
             {
@@ -98,6 +98,11 @@ namespace MeuProjeto
             {
                 errorProvider.SetError(txtPassword, null);
             }
+        }
+
+        private void Register_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
