@@ -1,10 +1,7 @@
 ﻿using Finance.Controller.TransactionController;
-using Finance.Data;
-using Finance.Data.Repositories;
 using Finance.Model.Enumerations;
 using Finance.View.TCategory;
 using Finance_Project.Model.Entities;
-using System.Diagnostics.Eventing.Reader;
 
 namespace Finance.View.Planner
 {
@@ -15,8 +12,8 @@ namespace Finance.View.Planner
         public Planner()
         {
             InitializeComponent();
-            _controller = new CategoryController(new CategoryRepository(new FinanceDbContext()));
-            _transactionController = new TransactionController(new TransactionRepository(new FinanceDbContext()));
+            _controller = new CategoryController();
+            _transactionController = new TransactionController();
 
             LoadCategories();
         }
@@ -119,7 +116,7 @@ namespace Finance.View.Planner
             decimal amount = Convert.ToDecimal(txtAmount.Text);
             DateTime registerDate = Convert.ToDateTime(DateOfEntryOrExit.Text);
             TransactionType transactionType;
-            if(rdEntrada.Checked)
+            if (rdEntrada.Checked)
             {
                 transactionType = TransactionType.Receipts;
             }
@@ -127,9 +124,15 @@ namespace Finance.View.Planner
             {
                 transactionType = TransactionType.Expense;
             }
-            Category category = (Category)cmbCategory.SelectedItem;
+            var category = cmbCategory.SelectedItem as Category;
 
-            _transactionController.SaveTransaction(description,amount,registerDate,transactionType,category);
+            if (category == null)
+            {
+                MessageBox.Show("Selecione uma Categoria", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            _transactionController.SaveTransaction(description, amount, registerDate, transactionType, category);
         }
     }
 }

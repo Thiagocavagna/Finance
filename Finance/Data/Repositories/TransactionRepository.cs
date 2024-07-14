@@ -1,18 +1,9 @@
 ﻿using Finance.Data;
 using Finance.Data.Repositories;
 using Finance_Project.Model.Entities;
-using System.Collections.Generic;
-using System.Linq;
 
-public class TransactionRepository : ITransactionRepository
+public class TransactionRepository : BaseRepository, ITransactionRepository
 {
-    private readonly FinanceDbContext _context;
-
-    public TransactionRepository(FinanceDbContext context)
-    {
-        _context = context;
-    }
-
     public void Add(Transaction transaction)
     {
         _context.Transactions.Add(transaction);

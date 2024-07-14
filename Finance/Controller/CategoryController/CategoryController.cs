@@ -1,13 +1,13 @@
 ﻿using Finance.Data.Repositories;
 using Finance_Project.Model.Entities;
-
+ 
 public class CategoryController
 {
-    private readonly ICategoryRepository _repository;
+    private readonly CategoryRepository _repository;
 
-    public CategoryController(ICategoryRepository repository)
+    public CategoryController()
     {
-        _repository = repository;
+        _repository = new();
     }
 
     public IEnumerable<Category> GetAllCategories()

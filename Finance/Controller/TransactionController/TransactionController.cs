@@ -1,17 +1,15 @@
-﻿using Finance.Data.Repositories;
-using Finance.Model.Enumerations;
+﻿using Finance.Model.Enumerations;
 using Finance_Project.Model.Entities;
-using Microsoft.Extensions.Options;
 
 namespace Finance.Controller.TransactionController
 {
     public class TransactionController
     {
-        private readonly ITransactionRepository _repository;
+        private readonly TransactionRepository _repository;
 
-        public TransactionController(ITransactionRepository repository)
+        public TransactionController()
         {
-            _repository = repository;
+            _repository = new();
         }
 
         public void SaveTransaction(string description, decimal amount, DateTime registerDate, TransactionType type, Category category)
@@ -22,8 +20,9 @@ namespace Finance.Controller.TransactionController
                 Amount = amount,
                 RegisterDate = registerDate,
                 Type = type,
-                Category = category
+                CategoryId = category.Id
             };
+
             _repository.Add(transaction);
             _repository.Save();
         }

@@ -1,4 +1,3 @@
-using Finance.Data;
 using Finance.View.Planner;
 
 namespace MeuProjeto

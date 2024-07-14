@@ -1,11 +1,8 @@
 using Finance.Data;
 using Finance.Data.Repositories;
-using Finance.View.Planner;
 using MeuProjeto;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 
 namespace Finance
 {
@@ -23,8 +20,7 @@ namespace Finance
 
             var userRepository = new UserRepository();
 
-            var context = new FinanceDbContext();
-            var categoryRepository = new CategoryRepository(context);
+            var categoryRepository = new CategoryRepository();
 
             if(userRepository.IsUserRegistered())
                 Application.Run(new Login());

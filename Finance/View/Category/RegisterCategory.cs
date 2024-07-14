@@ -26,7 +26,7 @@ namespace Finance.View.TCategory
         public RegisterCategory()
         {
             InitializeComponent();
-            _controller = new CategoryController(new CategoryRepository(new FinanceDbContext()));
+            _controller = new CategoryController();
             
 
         }

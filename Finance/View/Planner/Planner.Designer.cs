@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Planner));
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             menuStrip1 = new MenuStrip();
             passwordToolStripMenuItem = new ToolStripMenuItem();
             relatorioToolStripMenuItem = new ToolStripMenuItem();
@@ -46,6 +46,7 @@
             lblCurrentTime = new Label();
             label2 = new Label();
             BoxPrencher = new BoxRadio();
+            txtDescription = new TextBox();
             btnExcluir = new Button();
             btnAdd = new Button();
             cmbCategory = new ComboBox();
@@ -58,7 +59,6 @@
             Categoria = new DataGridViewTextBoxColumn();
             Excluir = new DataGridViewButtonColumn();
             timerCurrentTime = new System.Windows.Forms.Timer(components);
-            txtDescription = new TextBox();
             menuStrip1.SuspendLayout();
             PainelEntradaSaida.SuspendLayout();
             PainelFundoBranco.SuspendLayout();
@@ -243,6 +243,14 @@
             BoxPrencher.Size = new Size(397, 589);
             BoxPrencher.TabIndex = 1;
             // 
+            // txtDescription
+            // 
+            txtDescription.Location = new Point(31, 43);
+            txtDescription.Name = "txtDescription";
+            txtDescription.PlaceholderText = "Descrição";
+            txtDescription.Size = new Size(322, 43);
+            txtDescription.TabIndex = 11;
+            // 
             // btnExcluir
             // 
             btnExcluir.BackColor = SystemColors.ActiveBorder;
@@ -304,6 +312,7 @@
             dvPlanner.Columns.AddRange(new DataGridViewColumn[] { Descricao, Valor, Data, Tipo, Categoria, Excluir });
             dvPlanner.Location = new Point(10, 13);
             dvPlanner.Name = "dvPlanner";
+            dvPlanner.ReadOnly = true;
             dvPlanner.RowHeadersVisible = false;
             dvPlanner.RowHeadersWidth = 51;
             dvPlanner.Size = new Size(831, 564);
@@ -315,6 +324,7 @@
             Descricao.HeaderText = "Descrição";
             Descricao.MinimumWidth = 6;
             Descricao.Name = "Descricao";
+            Descricao.ReadOnly = true;
             // 
             // Valor
             // 
@@ -322,6 +332,7 @@
             Valor.HeaderText = "Valor";
             Valor.MinimumWidth = 6;
             Valor.Name = "Valor";
+            Valor.ReadOnly = true;
             // 
             // Data
             // 
@@ -329,6 +340,7 @@
             Data.HeaderText = "Data";
             Data.MinimumWidth = 6;
             Data.Name = "Data";
+            Data.ReadOnly = true;
             // 
             // Tipo
             // 
@@ -336,6 +348,7 @@
             Tipo.HeaderText = "Tipo";
             Tipo.MinimumWidth = 6;
             Tipo.Name = "Tipo";
+            Tipo.ReadOnly = true;
             // 
             // Categoria
             // 
@@ -343,30 +356,24 @@
             Categoria.HeaderText = "Categoria";
             Categoria.MinimumWidth = 6;
             Categoria.Name = "Categoria";
+            Categoria.ReadOnly = true;
             // 
             // Excluir
             // 
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.Red;
-            Excluir.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.Red;
+            Excluir.DefaultCellStyle = dataGridViewCellStyle1;
             Excluir.FillWeight = 5F;
             Excluir.FlatStyle = FlatStyle.Flat;
             Excluir.HeaderText = "";
             Excluir.MinimumWidth = 6;
             Excluir.Name = "Excluir";
+            Excluir.ReadOnly = true;
             // 
             // timerCurrentTime
             // 
             timerCurrentTime.Interval = 1000;
             timerCurrentTime.Tick += timerCurrentTime_Tick;
-            // 
-            // txtDescription
-            // 
-            txtDescription.Location = new Point(31, 43);
-            txtDescription.Name = "txtDescription";
-            txtDescription.PlaceholderText = "Descrição";
-            txtDescription.Size = new Size(322, 43);
-            txtDescription.TabIndex = 11;
             // 
             // Planner
             // 

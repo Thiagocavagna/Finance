@@ -2,15 +2,8 @@
 
 namespace Finance.Data.Repositories
 {
-    public class CategoryRepository : ICategoryRepository
-    {
-        private readonly FinanceDbContext _context;
-
-        public CategoryRepository(FinanceDbContext context)
-        {
-            _context = context;
-        }
-
+    public class CategoryRepository : BaseRepository, ICategoryRepository
+    {       
         public IEnumerable<Category> GetAll()
         {
             return _context.Categories.ToList();
