@@ -1,5 +1,7 @@
-﻿using Finance.Data;
+﻿using Finance.Controller.TransactionController;
+using Finance.Data;
 using Finance.Data.Repositories;
+using Finance.Model.Enumerations;
 using Finance.View.TCategory;
 using Finance_Project.Model.Entities;
 using System.Diagnostics.Eventing.Reader;
@@ -9,10 +11,12 @@ namespace Finance.View.Planner
     public partial class Planner : Form
     {
         private readonly CategoryController _controller;
+        private readonly TransactionController _transactionController;
         public Planner()
         {
             InitializeComponent();
             _controller = new CategoryController(new CategoryRepository(new FinanceDbContext()));
+            _transactionController = new TransactionController(new TransactionRepository(new FinanceDbContext()));
 
             LoadCategories();
         }
@@ -56,6 +60,7 @@ namespace Finance.View.Planner
         {
             lblCurrentTime.Text = DateTime.Now.ToString("HH:mm:ss");
             timerCurrentTime.Start();
+            rdEntrada.Checked = true;
         }
 
         private void Planner_MaximizedBoundsChanged(object sender, EventArgs e)
@@ -106,6 +111,25 @@ namespace Finance.View.Planner
         private void timerCurrentTime_Tick(object sender, EventArgs e)
         {
             lblCurrentTime.Text = DateTime.Now.ToString("HH:mm:ss");
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            string description = txtDescription.Text;
+            decimal amount = Convert.ToDecimal(txtAmount.Text);
+            DateTime registerDate = Convert.ToDateTime(DateOfEntryOrExit.Text);
+            TransactionType transactionType;
+            if(rdEntrada.Checked)
+            {
+                transactionType = TransactionType.Receipts;
+            }
+            else
+            {
+                transactionType = TransactionType.Expense;
+            }
+            Category category = (Category)cmbCategory.SelectedItem;
+
+            _transactionController.SaveTransaction(description,amount,registerDate,transactionType,category);
         }
     }
 }

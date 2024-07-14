@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Planner));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             menuStrip1 = new MenuStrip();
             passwordToolStripMenuItem = new ToolStripMenuItem();
             relatorioToolStripMenuItem = new ToolStripMenuItem();
@@ -38,9 +38,9 @@
             PainelEntradaSaida = new Panel();
             rdSaida = new RadioButton();
             rdEntrada = new RadioButton();
-            DateEntradaSaida = new DateTimePicker();
+            DateOfEntryOrExit = new DateTimePicker();
             Titulo = new Label();
-            tbValor = new TextBox();
+            txtAmount = new TextBox();
             PainelFundoBranco = new Panel();
             BoxFooter = new BoxRadio();
             lblCurrentTime = new Label();
@@ -50,7 +50,7 @@
             btnAdd = new Button();
             cmbCategory = new ComboBox();
             BoxPlanner = new BoxRadio();
-            dataGridView1 = new DataGridView();
+            dvPlanner = new DataGridView();
             Descricao = new DataGridViewTextBoxColumn();
             Valor = new DataGridViewTextBoxColumn();
             Data = new DataGridViewTextBoxColumn();
@@ -58,13 +58,14 @@
             Categoria = new DataGridViewTextBoxColumn();
             Excluir = new DataGridViewButtonColumn();
             timerCurrentTime = new System.Windows.Forms.Timer(components);
+            txtDescription = new TextBox();
             menuStrip1.SuspendLayout();
             PainelEntradaSaida.SuspendLayout();
             PainelFundoBranco.SuspendLayout();
             BoxFooter.SuspendLayout();
             BoxPrencher.SuspendLayout();
             BoxPlanner.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dvPlanner).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -95,19 +96,20 @@
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(17, 408);
+            btnSave.Location = new Point(31, 477);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(322, 57);
             btnSave.TabIndex = 7;
             btnSave.Text = "Salvar";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // PainelEntradaSaida
             // 
             PainelEntradaSaida.BackColor = SystemColors.ButtonShadow;
             PainelEntradaSaida.Controls.Add(rdSaida);
             PainelEntradaSaida.Controls.Add(rdEntrada);
-            PainelEntradaSaida.Location = new Point(17, 320);
+            PainelEntradaSaida.Location = new Point(31, 389);
             PainelEntradaSaida.Name = "PainelEntradaSaida";
             PainelEntradaSaida.Size = new Size(322, 53);
             PainelEntradaSaida.TabIndex = 6;
@@ -115,7 +117,7 @@
             // rdSaida
             // 
             rdSaida.AutoSize = true;
-            rdSaida.Location = new Point(197, 3);
+            rdSaida.Location = new Point(180, 5);
             rdSaida.Name = "rdSaida";
             rdSaida.Size = new Size(104, 42);
             rdSaida.TabIndex = 5;
@@ -129,7 +131,7 @@
             rdEntrada.AutoSize = true;
             rdEntrada.BackColor = Color.Transparent;
             rdEntrada.ForeColor = Color.Black;
-            rdEntrada.Location = new Point(43, 3);
+            rdEntrada.Location = new Point(34, 5);
             rdEntrada.Name = "rdEntrada";
             rdEntrada.Size = new Size(131, 42);
             rdEntrada.TabIndex = 4;
@@ -137,14 +139,14 @@
             rdEntrada.Text = "Entrada";
             rdEntrada.UseVisualStyleBackColor = false;
             // 
-            // DateEntradaSaida
+            // DateOfEntryOrExit
             // 
-            DateEntradaSaida.CalendarForeColor = SystemColors.ActiveBorder;
-            DateEntradaSaida.CalendarTitleForeColor = SystemColors.ActiveBorder;
-            DateEntradaSaida.Location = new Point(17, 229);
-            DateEntradaSaida.Name = "DateEntradaSaida";
-            DateEntradaSaida.Size = new Size(323, 43);
-            DateEntradaSaida.TabIndex = 0;
+            DateOfEntryOrExit.CalendarForeColor = SystemColors.ActiveBorder;
+            DateOfEntryOrExit.CalendarTitleForeColor = SystemColors.ActiveBorder;
+            DateOfEntryOrExit.Location = new Point(31, 298);
+            DateOfEntryOrExit.Name = "DateOfEntryOrExit";
+            DateOfEntryOrExit.Size = new Size(323, 43);
+            DateOfEntryOrExit.TabIndex = 0;
             // 
             // Titulo
             // 
@@ -157,14 +159,14 @@
             Titulo.TabIndex = 1;
             Titulo.Text = "Preencha os campos abaixo:";
             // 
-            // tbValor
+            // txtAmount
             // 
-            tbValor.Location = new Point(17, 52);
-            tbValor.Name = "tbValor";
-            tbValor.PlaceholderText = "Valor";
-            tbValor.Size = new Size(322, 43);
-            tbValor.TabIndex = 0;
-            tbValor.TextChanged += textBox1_TextChanged;
+            txtAmount.Location = new Point(31, 121);
+            txtAmount.Name = "txtAmount";
+            txtAmount.PlaceholderText = "Valor";
+            txtAmount.Size = new Size(322, 43);
+            txtAmount.TabIndex = 0;
+            txtAmount.TextChanged += textBox1_TextChanged;
             // 
             // PainelFundoBranco
             // 
@@ -226,13 +228,14 @@
             BoxPrencher.AutoSize = true;
             BoxPrencher.BackColor = SystemColors.ActiveBorder;
             BoxPrencher.BorderRadius = 40;
+            BoxPrencher.Controls.Add(txtDescription);
             BoxPrencher.Controls.Add(btnExcluir);
             BoxPrencher.Controls.Add(btnAdd);
             BoxPrencher.Controls.Add(cmbCategory);
-            BoxPrencher.Controls.Add(tbValor);
+            BoxPrencher.Controls.Add(txtAmount);
             BoxPrencher.Controls.Add(btnSave);
             BoxPrencher.Controls.Add(PainelEntradaSaida);
-            BoxPrencher.Controls.Add(DateEntradaSaida);
+            BoxPrencher.Controls.Add(DateOfEntryOrExit);
             BoxPrencher.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             BoxPrencher.Location = new Point(8, 57);
             BoxPrencher.Name = "BoxPrencher";
@@ -247,7 +250,7 @@
             btnExcluir.BackgroundImageLayout = ImageLayout.Center;
             btnExcluir.FlatStyle = FlatStyle.Flat;
             btnExcluir.ForeColor = SystemColors.ActiveBorder;
-            btnExcluir.Location = new Point(341, 140);
+            btnExcluir.Location = new Point(355, 209);
             btnExcluir.Name = "btnExcluir";
             btnExcluir.Size = new Size(28, 45);
             btnExcluir.TabIndex = 10;
@@ -262,7 +265,7 @@
             btnAdd.Cursor = Cursors.Hand;
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.ForeColor = SystemColors.ActiveBorder;
-            btnAdd.Location = new Point(305, 140);
+            btnAdd.Location = new Point(319, 209);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(29, 45);
             btnAdd.TabIndex = 9;
@@ -272,7 +275,7 @@
             // cmbCategory
             // 
             cmbCategory.FormattingEnabled = true;
-            cmbCategory.Location = new Point(17, 140);
+            cmbCategory.Location = new Point(31, 209);
             cmbCategory.Name = "cmbCategory";
             cmbCategory.Size = new Size(281, 45);
             cmbCategory.TabIndex = 8;
@@ -286,25 +289,25 @@
             BoxPlanner.AutoSize = true;
             BoxPlanner.BackColor = SystemColors.ActiveBorder;
             BoxPlanner.BorderRadius = 40;
-            BoxPlanner.Controls.Add(dataGridView1);
+            BoxPlanner.Controls.Add(dvPlanner);
             BoxPlanner.Location = new Point(411, 57);
             BoxPlanner.Name = "BoxPlanner";
             BoxPlanner.Padding = new Padding(5);
             BoxPlanner.Size = new Size(851, 589);
             BoxPlanner.TabIndex = 0;
             // 
-            // dataGridView1
+            // dvPlanner
             // 
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Descricao, Valor, Data, Tipo, Categoria, Excluir });
-            dataGridView1.Location = new Point(10, 13);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersVisible = false;
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(831, 564);
-            dataGridView1.TabIndex = 0;
+            dvPlanner.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dvPlanner.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dvPlanner.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dvPlanner.Columns.AddRange(new DataGridViewColumn[] { Descricao, Valor, Data, Tipo, Categoria, Excluir });
+            dvPlanner.Location = new Point(10, 13);
+            dvPlanner.Name = "dvPlanner";
+            dvPlanner.RowHeadersVisible = false;
+            dvPlanner.RowHeadersWidth = 51;
+            dvPlanner.Size = new Size(831, 564);
+            dvPlanner.TabIndex = 0;
             // 
             // Descricao
             // 
@@ -343,9 +346,9 @@
             // 
             // Excluir
             // 
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.Red;
-            Excluir.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.Red;
+            Excluir.DefaultCellStyle = dataGridViewCellStyle2;
             Excluir.FillWeight = 5F;
             Excluir.FlatStyle = FlatStyle.Flat;
             Excluir.HeaderText = "";
@@ -356,6 +359,14 @@
             // 
             timerCurrentTime.Interval = 1000;
             timerCurrentTime.Tick += timerCurrentTime_Tick;
+            // 
+            // txtDescription
+            // 
+            txtDescription.Location = new Point(31, 43);
+            txtDescription.Name = "txtDescription";
+            txtDescription.PlaceholderText = "Descrição";
+            txtDescription.Size = new Size(322, 43);
+            txtDescription.TabIndex = 11;
             // 
             // Planner
             // 
@@ -387,7 +398,7 @@
             BoxPrencher.ResumeLayout(false);
             BoxPrencher.PerformLayout();
             BoxPlanner.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dvPlanner).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -398,9 +409,9 @@
         private ToolStripMenuItem passwordToolStripMenuItem;
         private ToolStripMenuItem relatorioToolStripMenuItem;
         private Panel PainelFundoBranco;
-        private TextBox tbValor;
+        private TextBox txtAmount;
         private Label Titulo;
-        private DateTimePicker DateEntradaSaida;
+        private DateTimePicker DateOfEntryOrExit;
         private RadioButton rdSaida;
         private RadioButton rdEntrada;
         private Panel PainelEntradaSaida;
@@ -408,7 +419,7 @@
         private BoxRadio BoxPlanner;
         private BoxRadio BoxPrencher;
         private BoxRadio BoxFooter;
-        private DataGridView dataGridView1;
+        private DataGridView dvPlanner;
         private ComboBox cmbCategory;
         private Button btnAdd;
         private Label lblCurrentTime;
@@ -421,5 +432,6 @@
         private DataGridViewTextBoxColumn Categoria;
         private DataGridViewButtonColumn Excluir;
         private System.Windows.Forms.Timer timerCurrentTime;
+        private TextBox txtDescription;
     }
 }
