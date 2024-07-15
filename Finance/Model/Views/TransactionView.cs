@@ -9,7 +9,8 @@ namespace Finance.Model.Views
         public string Description { get; set; }
         public decimal Amount { get; set; }
         public TransactionType Type { get; set; }
-        public string CategoryName { get; set; }
+        public string CategoryName { get; set; } //TODO: Verificar se é necessário
+        public Category Category { get; set; }
         public DateTime RegisterDate { get; set; }
 
         public static implicit operator TransactionView(Transaction transaction)
@@ -21,7 +22,8 @@ namespace Finance.Model.Views
                 Amount = transaction.Amount,
                 Type = transaction.Type,
                 RegisterDate = transaction.RegisterDate,
-                CategoryName = transaction.Category.Name
+                CategoryName = transaction.Category.Name,
+                Category = transaction.Category
             };
         }
     }

@@ -31,17 +31,17 @@ public class TransactionRepository : BaseRepository, ITransactionRepository
             x.RegisterDate == registerDate);
     }
 
+    public Transaction GetById(Guid id)
+    {
+        return _context.Transactions.FirstOrDefault(x => x.Id == id);
+    }
+
     public void Delete(Transaction transaction)
     {
-        throw new NotImplementedException();
+        _context.Transactions.Remove(transaction);
     }
 
     public void Update(Transaction transaction)
-    {
-        throw new NotImplementedException();
-    }
-
-    public IEnumerable<Transaction> getAll()
     {
         throw new NotImplementedException();
     }

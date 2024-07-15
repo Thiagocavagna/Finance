@@ -63,5 +63,10 @@ namespace Finance.Controller.TransactionController
             transaction = _repository.GetById(id);
             return transaction;
         }
+        public void DeleteTransaction(Transaction transaction)
+        {
+            _repository.Delete(transaction);
+            _repository.Save();
+        }
     }
 }

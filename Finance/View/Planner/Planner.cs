@@ -1,8 +1,8 @@
 ﻿using Finance.Controller.TransactionController;
-using Finance.Data.Repositories;
 using Finance.Model.Enumerations;
 using Finance.View.TCategory;
 using Finance_Project.Model.Entities;
+using System.Globalization;
 
 namespace Finance.View.Planner
 {
@@ -19,7 +19,9 @@ namespace Finance.View.Planner
             dvPlanner.CellEndEdit += dvPlanner_CellEndEdit;
 
             LoadCategories();
+            LoadFilterCategories();
             LoadDataIntoDataGridView();
+            LoadCategoriesIntoComboBoxColumn();
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -82,14 +84,22 @@ namespace Finance.View.Planner
         }
         public void LoadCategories()
         {
-            var categories = _controller.GetAllCategories();
+            var categories = _controller.GetAllCategories(); ;
             cmbCategory.DataSource = categories;
-            cmbCategory.DisplayMember = "Name"; // Propriedade a ser exibida
-            cmbCategory.ValueMember = "Id";    // Propriedade de valor
+            cmbCategory.DisplayMember = "Name";
+            cmbCategory.ValueMember = "Id";
+        }
+        public void LoadFilterCategories()
+        {
+            var categoriesFilter = _controller.GetAllCategories();
+            cmbFilterCategory.DataSource = categoriesFilter;
+            cmbFilterCategory.DisplayMember = "Name";
+            cmbFilterCategory.ValueMember = "Id";
         }
         private void EventoLoadCategory(object sender, EventArgs e)
         {
             LoadCategories();
+            LoadCategoriesIntoComboBoxColumn();
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -118,20 +128,32 @@ namespace Finance.View.Planner
                 cmbCategory.Text = "";
             }
         }
+        private void LoadCategoriesIntoComboBoxColumn()
+        {
+            var categories = _controller.GetAllCategories();
+            var comboBoxColumn = dvPlanner.Columns["Category"] as DataGridViewComboBoxColumn;
 
+            if (comboBoxColumn != null)
+            {
+                comboBoxColumn.DataSource = categories.ToList();
+                comboBoxColumn.DisplayMember = "Name";
+                comboBoxColumn.ValueMember = "Id";
+            }
+        }
         private void LoadDataIntoDataGridView()
         {
-            var transactions = _transactionController.GetAll();
-
             dvPlanner.Rows.Clear();
+            var transactions = _transactionController.GetAll();
 
             foreach (var transaction in transactions)
             {
-                dvPlanner.Rows.Add(transaction.Description, transaction.Amount, transaction.RegisterDate, transaction.Type,
-                    transaction.CategoryName);
+                var formattedAmount = transaction.Amount.ToString("C", new CultureInfo("pt-BR"));
+                //TODO: ERRO AQUI
+                dvPlanner.Rows.Add(transaction.Id, transaction.Description, formattedAmount, transaction.RegisterDate,
+                    transaction.Type, transaction.Category.Id);
             }
 
-            dvPlanner.ReadOnly = true;
+            dvPlanner.ReadOnly = false;
             dvPlanner.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dvPlanner.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dvPlanner.AllowUserToAddRows = false;
@@ -154,6 +176,7 @@ namespace Finance.View.Planner
                 decimal amount = num_amount.Value;
                 DateTime registerDate = Convert.ToDateTime(DateOfEntryOrExit.Text);
                 TransactionType transactionType;
+
                 if (rdEntrada.Checked)
                 {
                     transactionType = TransactionType.Receipts;
@@ -240,7 +263,8 @@ namespace Finance.View.Planner
         {
             //TODO: Metodo para salvar a edição.
             var editedRow = dvPlanner.Rows[e.RowIndex];
-            var transactionId = (Guid)editedRow.Cells["id"].Value;
+            var transactionId = (Guid)editedRow.Cells["Id"].Value;
+
             Transaction transaction = _transactionController.GetById(transactionId);
 
             if (transaction == null)
@@ -249,7 +273,33 @@ namespace Finance.View.Planner
                 return;
             }
 
-            _transactionController.UpdateTransaction(transaction.Description,transaction.Amount,transaction.RegisterDate,transaction.Type,transaction.Category);
+            //_transactionController.UpdateTransaction(transaction.Description, transaction.Amount, transaction.RegisterDate, transaction.Type, transaction.Category);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dvPlanner_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        private void dvPlanner_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0 && e.ColumnIndex == dvPlanner.Columns["Delete"].Index)
+            {
+                var transactionId = (Guid)dvPlanner.Rows[e.RowIndex].Cells["Id"].Value;
+                var transaction = _transactionController.GetById(transactionId);
+
+                var result = MessageBox.Show("Deseja realmente excluir a transação?", 
+                    "Excluir Transação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if(result == DialogResult.Yes) {
+                    _transactionController.DeleteTransaction(transaction);
+                    LoadDataIntoDataGridView();
+                }
+            }
         }
     }
 }

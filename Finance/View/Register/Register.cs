@@ -19,22 +19,29 @@ namespace MeuProjeto
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string name = txtName.Text;
-            string email = txtEmail.Text;
-            string password = txtPassword.Text;
-
-            var result = _controller.Register(name, email, password);
-
-
-            if (result.Success)
+            if(ValidateChildren())
             {
-                Login loginForm = new();
-                loginForm.Show();
+                string name = txtName.Text;
+                string email = txtEmail.Text;
+                string password = txtPassword.Text;
 
-                this.Hide(); //TODO: this.Close() está fechando tudo
+                var result = _controller.Register(name, email, password);
+
+
+                if (result.Success)
+                {
+                    Login loginForm = new();
+                    loginForm.Show();
+
+                    this.Hide(); //TODO: this.Close() está fechando tudo
+                }
+
+                MessageBox.Show(result.Message);
             }
-
-            MessageBox.Show(result.Message);
+            else
+            {
+               MessageBox.Show("Preencha todos os campos corretamente.");
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
