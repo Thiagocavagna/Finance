@@ -16,6 +16,8 @@ namespace Finance.View.Planner
             _controller = new CategoryController();
             _transactionController = new TransactionController();
 
+            dvPlanner.CellEndEdit += dvPlanner_CellEndEdit;
+
             LoadCategories();
             LoadDataIntoDataGridView();
         }
@@ -145,8 +147,8 @@ namespace Finance.View.Planner
         }
 
         private void btnSave_Click(object sender, EventArgs e)
-        {            
-            if(ValidateChildren())
+        {
+            if (ValidateChildren())
             {
                 string description = txtDescription.Text;
                 decimal amount = num_amount.Value;
@@ -168,7 +170,7 @@ namespace Finance.View.Planner
                     return;
                 }
 
-                if(_transactionController.Exists(amount, transactionType, category.Id, registerDate))
+                if (_transactionController.Exists(amount, transactionType, category.Id, registerDate))
                 {
                     MessageBox.Show("Já existe uma transação com esses dados", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -178,7 +180,7 @@ namespace Finance.View.Planner
                 _transactionController.SaveTransaction(description, amount, registerDate, transactionType, category);
 
                 LoadDataIntoDataGridView();
-            }           
+            }
         }
 
         private void txtDescription_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -189,7 +191,7 @@ namespace Finance.View.Planner
             }
             else
             {
-                errorProvider1.SetError(txtDescription, string.Empty); 
+                errorProvider1.SetError(txtDescription, string.Empty);
             }
         }
 
@@ -201,7 +203,7 @@ namespace Finance.View.Planner
             }
             else
             {
-                errorProvider1.SetError(num_amount, string.Empty); 
+                errorProvider1.SetError(num_amount, string.Empty);
             }
         }
 
@@ -213,7 +215,7 @@ namespace Finance.View.Planner
             }
             else
             {
-                errorProvider1.SetError(cmbCategory, string.Empty); 
+                errorProvider1.SetError(cmbCategory, string.Empty);
             }
         }
 
@@ -225,9 +227,29 @@ namespace Finance.View.Planner
             }
             else
             {
-                errorProvider1.SetError(DateOfEntryOrExit, string.Empty); 
+                errorProvider1.SetError(DateOfEntryOrExit, string.Empty);
             }
         }
 
+        private void dvPlanner_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dvPlanner_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            //TODO: Metodo para salvar a edição.
+            var editedRow = dvPlanner.Rows[e.RowIndex];
+            var transactionId = (Guid)editedRow.Cells["id"].Value;
+            Transaction transaction = _transactionController.GetById(transactionId);
+
+            if (transaction == null)
+            {
+                MessageBox.Show("Transação não encontrada");
+                return;
+            }
+
+            _transactionController.UpdateTransaction(transaction.Description,transaction.Amount,transaction.RegisterDate,transaction.Type,transaction.Category);
+        }
     }
 }

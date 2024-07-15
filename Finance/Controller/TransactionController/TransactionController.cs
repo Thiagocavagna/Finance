@@ -41,6 +41,27 @@ namespace Finance.Controller.TransactionController
             _repository.GetAll()?.ForEach(x => transactionViews.Add(x));
 
             return transactionViews;
-        }        
+        }
+        
+        public void UpdateTransaction(string description, decimal amount, DateTime registerDate, TransactionType type, Category category)
+        {
+            var transaction = new Transaction
+            {
+                Description = description,
+                Amount = amount,
+                RegisterDate = registerDate,
+                Type = type,
+                CategoryId = category.Id
+            };
+            _repository.Update(transaction);
+            _repository.Save();
+        }
+
+        public Transaction GetById(Guid id)
+        {
+            Transaction transaction;
+            transaction = _repository.GetById(id);
+            return transaction;
+        }
     }
 }
