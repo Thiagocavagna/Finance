@@ -24,11 +24,16 @@ namespace Finance.View.Password
         {
             if (ValidateChildren())
             {
-                var SenhaAtual = txtSenhaAtual.Text;
-                var SenhaNova = txtNovaSenha.Text;
-                var SenhaConfirm = txtConfirmSenha.Text;
+                var currentPassword = txtSenhaAtual.Text;
+                var newPassword = txtNovaSenha.Text;
+                var confirmNewPassword = txtConfirmSenha.Text;
                 
-                _userController.UpdatePassword(SenhaAtual, SenhaNova, SenhaConfirm);
+                var result = _userController.UpdatePassword(currentPassword, newPassword, confirmNewPassword);
+
+                if (result.Success)
+                    this.Close();
+
+                MessageBox.Show(result.Message);
             }
             else
             {

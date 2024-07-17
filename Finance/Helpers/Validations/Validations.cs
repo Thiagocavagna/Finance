@@ -10,11 +10,12 @@ namespace Finance.Helpers.Validations
             Regex regex = new Regex(pattern);
             return regex.IsMatch(email);
         }
-        public static bool PasswordIsValid(string email)
+
+        public static bool PasswordIsValid(string password)
         {
-            string pattern = @"^(?=.*[!@#$%^&*])(.{8,})$";
+            string pattern = @"^(?=.*[A-Z])(?=.*[!@#$%^&*])(.{8,})$";
             Regex regex = new Regex(pattern);
-            return regex.IsMatch(email);
+            return regex.IsMatch(password);
         }
 
     }

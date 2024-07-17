@@ -49,8 +49,24 @@ public class UserController : ControllerBase, IUserController
         return password.VerifyPassword(user.Password);
     }
 
-    public void UpdatePassword(string senhaAtual, string novaSenha, string confirmSenha)
+    public Result UpdatePassword(string currentPassword, string newPassword, string confirmNewPassword)
     {
-        _repository.updatePassword(senhaAtual, novaSenha, confirmSenha);
+        if (newPassword != confirmNewPassword)
+            return Unsuccessful("As senhas não conferem!");
+
+        var user = _repository.GetUser();
+
+        if (user == null)
+            return Unsuccessful("Usuário não encontrado!");
+
+        if (!currentPassword.VerifyPassword(user.Password))
+            return Unsuccessful("A senha não confere!");
+
+        user.Password = newPassword.PasswordHasher();
+
+        _repository.Update(user);
+        _repository.Save();
+
+        return Successful("Senha alterada com sucesso!");
     }
 }

@@ -75,11 +75,12 @@ namespace Finance.View.Planner
             cmbFilterCategory.DisplayMember = "Name";
             cmbFilterCategory.ValueMember = "Id";
         }
+
         private void EventoLoadCategory(object sender, EventArgs e)
         {
             LoadCategories();
             LoadCategoriesIntoComboBoxColumn();
-            LoadFilterCategories();
+            InitialLoadFilterCategories();
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
