@@ -20,6 +20,9 @@ namespace Finance.Data.Mapping
             builder.Property(x => x.Description)
                 .HasColumnType("varchar(200)")
                 .IsRequired();
+
+            builder.HasIndex(x => x.Name)
+                .IsUnique();
         }
     }
 }

@@ -77,6 +77,7 @@
             timerCurrentTime = new System.Windows.Forms.Timer(components);
             errorProvider1 = new ErrorProvider(components);
             categoryBindingSource1 = new BindingSource(components);
+            btn_limpar = new Button();
             menuStrip1.SuspendLayout();
             PainelEntradaSaida.SuspendLayout();
             PainelFundoBranco.SuspendLayout();
@@ -143,7 +144,6 @@
             rdSaida.TabIndex = 6;
             rdSaida.Text = "Saída";
             rdSaida.UseVisualStyleBackColor = true;
-            rdSaida.CheckedChanged += radioButton2_CheckedChanged;
             // 
             // rdEntrada
             // 
@@ -197,7 +197,6 @@
             PainelFundoBranco.Padding = new Padding(4);
             PainelFundoBranco.Size = new Size(1109, 612);
             PainelFundoBranco.TabIndex = 3;
-            PainelFundoBranco.Paint += panel2_Paint;
             // 
             // BoxFooter
             // 
@@ -224,7 +223,6 @@
             lblCurrentTime.Size = new Size(284, 73);
             lblCurrentTime.TabIndex = 1;
             lblCurrentTime.Text = "22:35:00";
-            lblCurrentTime.Click += label3_Click;
             // 
             // label2
             // 
@@ -366,7 +364,7 @@
             dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(727, 44);
+            dataGridView1.Size = new Size(717, 44);
             dataGridView1.TabIndex = 4;
             // 
             // totalEntrada
@@ -407,18 +405,20 @@
             dvPlanner.BorderStyle = BorderStyle.Fixed3D;
             dvPlanner.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dvPlanner.Columns.AddRange(new DataGridViewColumn[] { Id, Descricao, Valor, Data, Tipo, Category, btnDeleteTransaction });
-            dvPlanner.Location = new Point(9, 10);
+            dvPlanner.Location = new Point(21, 10);
             dvPlanner.Margin = new Padding(3, 2, 3, 2);
             dvPlanner.Name = "dvPlanner";
             dvPlanner.RowHeadersVisible = false;
             dvPlanner.RowHeadersWidth = 51;
-            dvPlanner.Size = new Size(727, 367);
+            dvPlanner.Size = new Size(717, 367);
             dvPlanner.TabIndex = 0;
             dvPlanner.TabStop = false;
             dvPlanner.CellClick += dvPlanner_CellClick;
             dvPlanner.CellContentClick += dvPlanner_CellContentClick;
             dvPlanner.CellEndEdit += dvPlanner_CellEndEdit;
             dvPlanner.CellValueChanged += dvPlanner_CellValueChanged;
+            dvPlanner.RowLeave += dvPlanner_RowLeave;
+            dvPlanner.RowValidated += dvPlanner_RowValidated;
             // 
             // Id
             // 
@@ -493,16 +493,17 @@
             boxRadio1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             boxRadio1.BackColor = SystemColors.ActiveBorder;
             boxRadio1.BorderRadius = 40;
+            boxRadio1.Controls.Add(btn_limpar);
             boxRadio1.Controls.Add(lbla);
             boxRadio1.Controls.Add(dateFilterStart);
             boxRadio1.Controls.Add(label4);
             boxRadio1.Controls.Add(cmbFilterCategory);
             boxRadio1.Controls.Add(btnFilter);
             boxRadio1.Controls.Add(dateFilterEnd);
-            boxRadio1.Location = new Point(451, 6);
+            boxRadio1.Location = new Point(369, 6);
             boxRadio1.Margin = new Padding(3, 2, 3, 2);
             boxRadio1.Name = "boxRadio1";
-            boxRadio1.Size = new Size(651, 32);
+            boxRadio1.Size = new Size(733, 32);
             boxRadio1.TabIndex = 8;
             // 
             // lbla
@@ -510,7 +511,7 @@
             lbla.Anchor = AnchorStyles.None;
             lbla.AutoSize = true;
             lbla.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbla.Location = new Point(422, 5);
+            lbla.Location = new Point(429, 5);
             lbla.Name = "lbla";
             lbla.Size = new Size(34, 21);
             lbla.TabIndex = 12;
@@ -520,18 +521,19 @@
             // 
             dateFilterStart.Anchor = AnchorStyles.None;
             dateFilterStart.Format = DateTimePickerFormat.Short;
-            dateFilterStart.Location = new Point(337, 5);
+            dateFilterStart.Location = new Point(344, 5);
             dateFilterStart.Margin = new Padding(3, 2, 3, 2);
             dateFilterStart.Name = "dateFilterStart";
             dateFilterStart.Size = new Size(79, 23);
             dateFilterStart.TabIndex = 11;
+            dateFilterStart.ValueChanged += dateFilterStart_ValueChanged;
             // 
             // label4
             // 
             label4.Anchor = AnchorStyles.None;
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(16, 5);
+            label4.Location = new Point(37, 5);
             label4.Name = "label4";
             label4.Size = new Size(50, 21);
             label4.TabIndex = 10;
@@ -541,7 +543,7 @@
             // 
             cmbFilterCategory.Anchor = AnchorStyles.None;
             cmbFilterCategory.FormattingEnabled = true;
-            cmbFilterCategory.Location = new Point(72, 5);
+            cmbFilterCategory.Location = new Point(90, 5);
             cmbFilterCategory.Margin = new Padding(3, 2, 3, 2);
             cmbFilterCategory.Name = "cmbFilterCategory";
             cmbFilterCategory.Size = new Size(246, 23);
@@ -551,23 +553,25 @@
             // btnFilter
             // 
             btnFilter.Anchor = AnchorStyles.None;
-            btnFilter.Location = new Point(550, 6);
+            btnFilter.Location = new Point(557, 6);
             btnFilter.Margin = new Padding(3, 2, 3, 2);
             btnFilter.Name = "btnFilter";
             btnFilter.Size = new Size(76, 22);
             btnFilter.TabIndex = 7;
             btnFilter.Text = "Aplicar";
             btnFilter.UseVisualStyleBackColor = true;
+            btnFilter.Click += btnFilter_Click;
             // 
             // dateFilterEnd
             // 
             dateFilterEnd.Anchor = AnchorStyles.None;
             dateFilterEnd.Format = DateTimePickerFormat.Short;
-            dateFilterEnd.Location = new Point(463, 5);
+            dateFilterEnd.Location = new Point(470, 5);
             dateFilterEnd.Margin = new Padding(3, 2, 3, 2);
             dateFilterEnd.Name = "dateFilterEnd";
             dateFilterEnd.Size = new Size(79, 23);
             dateFilterEnd.TabIndex = 6;
+            dateFilterEnd.ValueChanged += dateFilterEnd_ValueChanged;
             // 
             // categoryBindingSource
             // 
@@ -586,6 +590,18 @@
             // categoryBindingSource1
             // 
             categoryBindingSource1.DataSource = typeof(Finance_Project.Model.Entities.Category);
+            // 
+            // btn_limpar
+            // 
+            btn_limpar.Anchor = AnchorStyles.None;
+            btn_limpar.Location = new Point(639, 6);
+            btn_limpar.Margin = new Padding(3, 2, 3, 2);
+            btn_limpar.Name = "btn_limpar";
+            btn_limpar.Size = new Size(76, 22);
+            btn_limpar.TabIndex = 13;
+            btn_limpar.Text = "Limpar";
+            btn_limpar.UseVisualStyleBackColor = true;
+            btn_limpar.Click += btn_limpar_Click;
             // 
             // Planner
             // 
@@ -675,5 +691,6 @@
         private DataGridViewTextBoxColumn Tipo;
         private DataGridViewComboBoxColumn Category;
         private DataGridViewButtonColumn btnDeleteTransaction;
+        private Button btn_limpar;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Finance_Project.Model.Entities;
+﻿using Finance.Model.Views;
+using Finance_Project.Model.Entities;
 
 namespace Finance.Data.Repositories
 {
@@ -8,6 +9,7 @@ namespace Finance.Data.Repositories
         public void Delete(Transaction transaction);
         public void Update(Transaction transaction);
         public List<Transaction> GetAll();
+        List<Transaction> GetByFilter(TransactionFilter transactionFilter);
         public void Save();
     }
 }

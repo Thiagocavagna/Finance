@@ -10,6 +10,8 @@ public class CategoryController
         _repository = new();
     }
 
+    public bool AlreadyExists(string name) => _repository.AlreadyExists(name);
+    
     public IEnumerable<Category> GetAllCategories()
     {
         return _repository.GetAll();

@@ -50,7 +50,7 @@
             label7.Location = new Point(107, 9);
             label7.Margin = new Padding(5, 0, 5, 0);
             label7.Name = "label7";
-            label7.Size = new Size(237, 41);
+            label7.Size = new Size(188, 32);
             label7.TabIndex = 7;
             label7.Text = "Primeiro Acesso:";
             label7.Click += label7_Click;
@@ -61,7 +61,7 @@
             label5.Location = new Point(34, 197);
             label5.Margin = new Padding(5, 0, 5, 0);
             label5.Name = "label5";
-            label5.Size = new Size(95, 37);
+            label5.Size = new Size(75, 30);
             label5.TabIndex = 6;
             label5.Text = "Senha:";
             // 
@@ -71,7 +71,7 @@
             label3.Location = new Point(34, 19);
             label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
-            label3.Size = new Size(96, 37);
+            label3.Size = new Size(75, 30);
             label3.TabIndex = 4;
             label3.Text = "Nome:";
             // 
@@ -81,7 +81,7 @@
             txtName.Location = new Point(34, 55);
             txtName.Margin = new Padding(5, 6, 5, 6);
             txtName.Name = "txtName";
-            txtName.Size = new Size(306, 42);
+            txtName.Size = new Size(306, 35);
             txtName.TabIndex = 1;
             txtName.Validating += txtName_Validating;
             // 
@@ -90,8 +90,8 @@
             txtPassword.Location = new Point(34, 233);
             txtPassword.Margin = new Padding(5, 6, 5, 6);
             txtPassword.Name = "txtPassword";
-            txtPassword.PasswordChar = 'x';
-            txtPassword.Size = new Size(306, 42);
+            txtPassword.PasswordChar = '*';
+            txtPassword.Size = new Size(306, 35);
             txtPassword.TabIndex = 3;
             txtPassword.Validating += txtPassword_Validating;
             // 
@@ -100,7 +100,7 @@
             txtEmail.Location = new Point(34, 142);
             txtEmail.Margin = new Padding(5, 6, 5, 6);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(306, 42);
+            txtEmail.Size = new Size(306, 35);
             txtEmail.TabIndex = 2;
             txtEmail.Validating += txtEmail_Validating;
             // 
@@ -127,7 +127,7 @@
             label4.Location = new Point(34, 106);
             label4.Margin = new Padding(5, 0, 5, 0);
             label4.Name = "label4";
-            label4.Size = new Size(88, 37);
+            label4.Size = new Size(68, 30);
             label4.TabIndex = 5;
             label4.Text = "Email:";
             // 
@@ -148,7 +148,7 @@
             // 
             // Register
             // 
-            AutoScaleDimensions = new SizeF(14F, 36F);
+            AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(407, 420);
             Controls.Add(label7);

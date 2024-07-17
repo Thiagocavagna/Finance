@@ -5,6 +5,7 @@ namespace MeuProjeto
     public partial class Register : Form
     {
         private readonly UserController _controller;
+        private bool _shouldValidate;
 
         public Register()
         {
@@ -14,12 +15,13 @@ namespace MeuProjeto
 
         private void label7_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if(ValidateChildren())
+            _shouldValidate = true;
+
+            if (ValidateChildren())
             {
                 string name = txtName.Text;
                 string email = txtEmail.Text;
@@ -27,21 +29,21 @@ namespace MeuProjeto
 
                 var result = _controller.Register(name, email, password);
 
-
                 if (result.Success)
                 {
-                    Login loginForm = new();
+                    Login loginForm = new Login();
                     loginForm.Show();
-
-                    this.Hide(); //TODO: this.Close() está fechando tudo
+                    this.Hide();
                 }
 
                 MessageBox.Show(result.Message);
             }
             else
             {
-               MessageBox.Show("Preencha todos os campos corretamente.");
+                MessageBox.Show("Preencha todos os campos corretamente.");
             }
+
+            _shouldValidate = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -58,12 +60,12 @@ namespace MeuProjeto
             if (string.IsNullOrWhiteSpace(nome))
             {
                 errorProvider.SetError(txtName, "Campo de nome não pode estar vazio.");
-                e.Cancel = false;
+                e.Cancel = _shouldValidate;
             }
             else if (nome.Length < 3)
             {
                 errorProvider.SetError(txtName, "Nome deve conter pelo menos 3 caracteres.");
-                e.Cancel = false;
+                e.Cancel = _shouldValidate;
             }
             else
             {
@@ -75,13 +77,13 @@ namespace MeuProjeto
         {
             if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
-                errorProvider.SetError(txtEmail, "Campo de nome não pode estar vazio.");
-                e.Cancel = false;
+                errorProvider.SetError(txtEmail, "Campo de e-mail não pode estar vazio.");
+                e.Cancel = _shouldValidate;
             }
-            if (!Validations.EmailIsValid(txtEmail.Text))
+            else if (!Validations.EmailIsValid(txtEmail.Text))
             {
                 errorProvider.SetError(txtEmail, "E-mail em formato inválido.");
-                e.Cancel = false;
+                e.Cancel = _shouldValidate;
             }
             else
             {
@@ -93,13 +95,13 @@ namespace MeuProjeto
         {
             if (string.IsNullOrWhiteSpace(txtPassword.Text))
             {
-                errorProvider.SetError(txtPassword, "A senha não pode estar vazio.");
-                e.Cancel = false;
+                errorProvider.SetError(txtPassword, "A senha não pode estar vazia.");
+                e.Cancel = _shouldValidate;
             }
-            if (!Validations.PasswordIsValid(txtPassword.Text))
+            else if (!Validations.PasswordIsValid(txtPassword.Text))
             {
                 errorProvider.SetError(txtPassword, "Senha inválida. A senha deve conter no mínimo 8 caracteres e um caracter especial.");
-                e.Cancel = false;
+                if (_shouldValidate) e.Cancel = true;
             }
             else
             {
@@ -109,7 +111,6 @@ namespace MeuProjeto
 
         private void Register_Load(object sender, EventArgs e)
         {
-
         }
     }
 }

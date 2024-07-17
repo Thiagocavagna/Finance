@@ -1,5 +1,6 @@
 ﻿using Finance.Controller.TransactionController;
 using Finance.Model.Enumerations;
+using Finance.Model.Views;
 using Finance.View.TCategory;
 using Finance_Project.Model.Entities;
 using System.Globalization;
@@ -10,6 +11,8 @@ namespace Finance.View.Planner
     {
         private readonly CategoryController _controller;
         private readonly TransactionController _transactionController;
+        private TransactionFilter _filter = new();
+
         public Planner()
         {
             InitializeComponent();
@@ -18,45 +21,11 @@ namespace Finance.View.Planner
 
             dvPlanner.CellEndEdit += dvPlanner_CellEndEdit;
 
+            InitializeFilters();
             LoadCategories();
             LoadFilterCategories();
             LoadDataIntoDataGridView();
             LoadCategoriesIntoComboBoxColumn();
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void boxRadio1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void Planner_Load(object sender, EventArgs e)
@@ -100,6 +69,7 @@ namespace Finance.View.Planner
         {
             LoadCategories();
             LoadCategoriesIntoComboBoxColumn();
+            LoadFilterCategories();
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -143,12 +113,11 @@ namespace Finance.View.Planner
         private void LoadDataIntoDataGridView()
         {
             dvPlanner.Rows.Clear();
-            var transactions = _transactionController.GetAll();
+            var transactions = _transactionController.GetByFilter(_filter);
 
             foreach (var transaction in transactions)
             {
                 var formattedAmount = transaction.Amount.ToString("C", new CultureInfo("pt-BR"));
-                //TODO: ERRO AQUI
                 dvPlanner.Rows.Add(transaction.Id, transaction.Description, formattedAmount, transaction.RegisterDate,
                     transaction.Type, transaction.Category.Id);
             }
@@ -261,24 +230,26 @@ namespace Finance.View.Planner
 
         private void dvPlanner_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            //TODO: Metodo para salvar a edição.
-            var editedRow = dvPlanner.Rows[e.RowIndex];
-            var transactionId = (Guid)editedRow.Cells["Id"].Value;
-
-            Transaction transaction = _transactionController.GetById(transactionId);
-
-            if (transaction == null)
+            if (dvPlanner.IsCurrentRowDirty && e.ColumnIndex == dvPlanner.Columns.Count - 1)
             {
-                MessageBox.Show("Transação não encontrada");
-                return;
+                SaveRow(e.RowIndex);
             }
-
-            //_transactionController.UpdateTransaction(transaction.Description, transaction.Amount, transaction.RegisterDate, transaction.Type, transaction.Category);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cmbFilterCategory.SelectedItem != null)
+            {
+                var selectedValue = cmbFilterCategory.SelectedItem as Category;
 
+                if (Category == null)
+                {
+                    MessageBox.Show("Categoria inválida.");
+                    return;
+                }
+
+                _filter.CategoryId = selectedValue.Id;
+            }
         }
 
         private void dvPlanner_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -287,19 +258,122 @@ namespace Finance.View.Planner
 
         private void dvPlanner_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0 && e.ColumnIndex == dvPlanner.Columns["Delete"].Index)
+            if (e.RowIndex >= 0 && e.ColumnIndex == dvPlanner.Columns["btnDeleteTransaction"].Index)
             {
                 var transactionId = (Guid)dvPlanner.Rows[e.RowIndex].Cells["Id"].Value;
                 var transaction = _transactionController.GetById(transactionId);
 
-                var result = MessageBox.Show("Deseja realmente excluir a transação?", 
+                var result = MessageBox.Show("Deseja realmente excluir a transação?",
                     "Excluir Transação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if(result == DialogResult.Yes) {
+                if (result == DialogResult.Yes)
+                {
                     _transactionController.DeleteTransaction(transaction);
                     LoadDataIntoDataGridView();
                 }
             }
+        }
+
+        private void dvPlanner_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void SaveRow(int rowIndex)
+        {
+            DataGridViewRow editedRow = dvPlanner.Rows[rowIndex];
+
+            if (editedRow.Cells["Id"].Value == null || editedRow.Cells["Id"].Value == DBNull.Value)
+            {
+                return;
+            }
+
+            var transactionId = (Guid)editedRow.Cells["Id"].Value;
+
+            if (!Guid.TryParse(editedRow.Cells["Category"].Value.ToString(), out var categoryId))
+            {
+                MessageBox.Show("Categoria inválida.");
+                return;
+            }
+            var amountString = editedRow.Cells["Valor"]?.Value?.ToString();
+            var amount = amountString?.Replace("R$ ", "").Replace(",", ".");
+
+            if (!decimal.TryParse(amount, NumberStyles.Number, CultureInfo.InvariantCulture, out var amountDecimal))
+            {
+                MessageBox.Show("Valor inválido para o campo 'Valor'.");
+                return;
+            }
+
+            var description = editedRow.Cells["Descricao"].Value.ToString();
+            var registerDate = Convert.ToDateTime(editedRow.Cells["Data"].Value);
+            var type = (TransactionType)Enum.Parse(typeof(TransactionType), editedRow.Cells["Tipo"]?.Value?.ToString());
+
+
+            TransactionRequest request = new TransactionRequest
+            {
+                Description = description,
+                Amount = amountDecimal,
+                RegisterDate = registerDate,
+                CategoryId = categoryId,
+                Type = type
+            };
+
+            var result = _transactionController.UpdateTransaction(transactionId, request);
+
+            if (result.HasMessage)
+                MessageBox.Show(result.Message);
+        }
+
+        private void dvPlanner_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dvPlanner.IsCurrentRowDirty)
+            {
+                SaveRow(e.RowIndex);
+            }
+        }
+
+        private void dateFilterStart_ValueChanged(object sender, EventArgs e)
+        {
+            _filter.StartDate = dateFilterStart.Value;
+        }
+
+        private void dateFilterEnd_ValueChanged(object sender, EventArgs e)
+        {
+            _filter.EndDate = dateFilterEnd.Value;
+        }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+            dvPlanner.Rows.Clear();
+            var transactions = _transactionController.GetByFilter(_filter);
+
+            foreach (var transaction in transactions)
+            {
+                var formattedAmount = transaction.Amount.ToString("C", new CultureInfo("pt-BR"));
+                dvPlanner.Rows.Add(transaction.Id, transaction.Description, formattedAmount, transaction.RegisterDate,
+                    transaction.Type, transaction.Category.Id);
+            }
+
+            dvPlanner.ReadOnly = false;
+            dvPlanner.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dvPlanner.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dvPlanner.AllowUserToAddRows = false;
+        }
+
+        private void btn_limpar_Click(object sender, EventArgs e)
+        {
+            _filter = new();
+
+            InitializeFilters();
+            LoadDataIntoDataGridView();
+        }
+
+        private void InitializeFilters()
+        {
+
+            dateFilterEnd.Value = DateTime.Now.AddDays(1);
+            dateFilterStart.Value = DateTime.Now.AddDays(-30);
+            cmbFilterCategory.Text = "";
         }
     }
 }

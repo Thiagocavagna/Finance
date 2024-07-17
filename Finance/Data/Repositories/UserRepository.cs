@@ -1,5 +1,4 @@
 ﻿using Finance_Project.Model.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace Finance.Data.Repositories
 {

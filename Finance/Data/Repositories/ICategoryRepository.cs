@@ -9,5 +9,6 @@ namespace Finance.Data.Repositories
         void Add(Category category);
         void Update(Category category);
         void Delete(Category category);
+        bool AlreadyExists(string name);
     }
 }

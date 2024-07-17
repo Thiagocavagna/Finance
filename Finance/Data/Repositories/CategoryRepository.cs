@@ -28,7 +28,11 @@ namespace Finance.Data.Repositories
         {
             _context.Categories.Remove(category);
         }
-
+        
+        public bool AlreadyExists(string name)
+        {
+            return _context.Categories.Any(x => x.Name == name);
+        }
         public bool Save()
         {
             var count = _context.SaveChanges();

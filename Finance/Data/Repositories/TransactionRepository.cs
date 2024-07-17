@@ -1,5 +1,6 @@
 ﻿using Finance.Data.Repositories;
 using Finance.Model.Enumerations;
+using Finance.Model.Views;
 using Finance_Project.Model.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,7 +20,23 @@ public class TransactionRepository : BaseRepository, ITransactionRepository
     {
         return _context.Transactions.Include(x => x.Category).ToList();
     }
-
+    public List<Transaction> GetByFilter(TransactionFilter transactionFilter)
+    {
+        if(transactionFilter.CategoryId == null)
+        {
+            return _context.Transactions
+                .Include(x => x.Category)
+                .Where(x => x.RegisterDate >= transactionFilter.StartDate && x.RegisterDate <= transactionFilter.EndDate)
+                .ToList();
+        } else
+        {
+            return _context.Transactions
+                .Include(x => x.Category)
+                .Where(x => x.RegisterDate >= transactionFilter.StartDate && x.RegisterDate <= transactionFilter.EndDate
+                    && x.CategoryId == transactionFilter.CategoryId)
+                .ToList();
+        }
+    }
     public bool HasAnyTrasactionWithCategory(Guid categoryId)
     {
         return _context.Transactions.Any(x => x.CategoryId == categoryId); 
@@ -43,6 +60,6 @@ public class TransactionRepository : BaseRepository, ITransactionRepository
 
     public void Update(Transaction transaction)
     {
-        throw new NotImplementedException();
+        _context.Transactions.Update(transaction);
     }
 }

@@ -43,7 +43,12 @@ namespace Finance.View.TCategory
 
         private void btnAddCategory_Click(object sender, EventArgs e)
         {
-            
+            if(_controller.AlreadyExists(txtNameCategory.Text))
+            {
+                MessageBox.Show("Já existe uma categoria com esse nome cadastrado!");
+                return;
+            }
+
             CategoryName = txtNameCategory.Text;
             CategoryDescription = txtDescriptionCategory.Text;
             _controller.AddCategory(CategoryName, CategoryDescription);
