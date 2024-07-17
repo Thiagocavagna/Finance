@@ -34,7 +34,7 @@ namespace Finance.Data.Repositories
         {
             var user = _context.Users.FirstOrDefault();
             if (user == null) {
-                MessageBox.Show("Usuario não encontrado");
+                MessageBox.Show("Usuario não encontrado!");
                 return;
             }
             user.Password = novaSenha;
