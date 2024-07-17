@@ -3,7 +3,7 @@
     public class TransactionFilter
     {
         public Guid? CategoryId { get; set; }
-        public DateTime StartDate { get; set; } = DateTime.Now.AddDays(-30);
-        public DateTime EndDate { get; set; } = DateTime.Now.AddDays(1);
+        public DateTime StartDate { get; set; } = DateTime.Now.Date;
+        public DateTime EndDate { get; set; } = DateTime.Now.Date.AddDays(1).AddTicks(-1);
     }
 }

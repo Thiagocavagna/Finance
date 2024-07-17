@@ -21,11 +21,11 @@ namespace Finance.View.Planner
 
             dvPlanner.CellEndEdit += dvPlanner_CellEndEdit;
 
-            InitializeFilters();
             LoadCategories();
-            LoadFilterCategories();
-            LoadDataIntoDataGridView();
+            InitialLoadFilterCategories();
             LoadCategoriesIntoComboBoxColumn();
+            InitializeFilters();
+            LoadDataIntoDataGridView();
         }
 
         private void Planner_Load(object sender, EventArgs e)
@@ -58,9 +58,19 @@ namespace Finance.View.Planner
             cmbCategory.DisplayMember = "Name";
             cmbCategory.ValueMember = "Id";
         }
+
+        public void InitialLoadFilterCategories()
+        {
+            LoadFilterCategories();
+
+            cmbFilterCategory.SelectedIndex = -1;
+            _filter.CategoryId = null;
+        }
+
         public void LoadFilterCategories()
         {
             var categoriesFilter = _controller.GetAllCategories();
+
             cmbFilterCategory.DataSource = categoriesFilter;
             cmbFilterCategory.DisplayMember = "Name";
             cmbFilterCategory.ValueMember = "Id";
@@ -126,6 +136,14 @@ namespace Finance.View.Planner
             dvPlanner.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dvPlanner.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dvPlanner.AllowUserToAddRows = false;
+
+            var expenseSum = transactions.Sum(x => x.Type == TransactionType.Expense ? x.Amount : 0);
+            var receiptsSum = transactions.Sum(x => x.Type == TransactionType.Receipts ? x.Amount : 0);
+            var balance = receiptsSum - expenseSum;
+
+            dataGridView1.Rows[0].Cells["totalEntrada"].Value = receiptsSum;
+            dataGridView1.Rows[0].Cells["totalSaida"].Value = expenseSum;
+            dataGridView1.Rows[0].Cells["totalRestante"].Value = balance;
         }
 
         private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -344,20 +362,7 @@ namespace Finance.View.Planner
 
         private void btnFilter_Click(object sender, EventArgs e)
         {
-            dvPlanner.Rows.Clear();
-            var transactions = _transactionController.GetByFilter(_filter);
-
-            foreach (var transaction in transactions)
-            {
-                var formattedAmount = transaction.Amount.ToString("C", new CultureInfo("pt-BR"));
-                dvPlanner.Rows.Add(transaction.Id, transaction.Description, formattedAmount, transaction.RegisterDate,
-                    transaction.Type, transaction.Category.Id);
-            }
-
-            dvPlanner.ReadOnly = false;
-            dvPlanner.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dvPlanner.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dvPlanner.AllowUserToAddRows = false;
+            LoadDataIntoDataGridView();           
         }
 
         private void btn_limpar_Click(object sender, EventArgs e)
@@ -371,8 +376,8 @@ namespace Finance.View.Planner
         private void InitializeFilters()
         {
 
-            dateFilterEnd.Value = DateTime.Now.AddDays(1);
-            dateFilterStart.Value = DateTime.Now.AddDays(-30);
+            dateFilterEnd.Value = DateTime.Now.Date.AddDays(1).AddTicks(-1);
+            dateFilterStart.Value = DateTime.Now.Date;
             cmbFilterCategory.Text = "";
         }
     }

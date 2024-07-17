@@ -67,6 +67,7 @@
             Category = new DataGridViewComboBoxColumn();
             btnDeleteTransaction = new DataGridViewButtonColumn();
             boxRadio1 = new BoxRadio();
+            btn_limpar = new Button();
             lbla = new Label();
             dateFilterStart = new DateTimePicker();
             label4 = new Label();
@@ -77,7 +78,6 @@
             timerCurrentTime = new System.Windows.Forms.Timer(components);
             errorProvider1 = new ErrorProvider(components);
             categoryBindingSource1 = new BindingSource(components);
-            btn_limpar = new Button();
             menuStrip1.SuspendLayout();
             PainelEntradaSaida.SuspendLayout();
             PainelFundoBranco.SuspendLayout();
@@ -361,9 +361,11 @@
             dataGridView1.Location = new Point(9, 381);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
             dataGridView1.Size = new Size(717, 44);
             dataGridView1.TabIndex = 4;
             // 
@@ -506,6 +508,18 @@
             boxRadio1.Size = new Size(733, 32);
             boxRadio1.TabIndex = 8;
             // 
+            // btn_limpar
+            // 
+            btn_limpar.Anchor = AnchorStyles.None;
+            btn_limpar.Location = new Point(639, 6);
+            btn_limpar.Margin = new Padding(3, 2, 3, 2);
+            btn_limpar.Name = "btn_limpar";
+            btn_limpar.Size = new Size(76, 22);
+            btn_limpar.TabIndex = 13;
+            btn_limpar.Text = "Limpar";
+            btn_limpar.UseVisualStyleBackColor = true;
+            btn_limpar.Click += btn_limpar_Click;
+            // 
             // lbla
             // 
             lbla.Anchor = AnchorStyles.None;
@@ -590,18 +604,6 @@
             // categoryBindingSource1
             // 
             categoryBindingSource1.DataSource = typeof(Finance_Project.Model.Entities.Category);
-            // 
-            // btn_limpar
-            // 
-            btn_limpar.Anchor = AnchorStyles.None;
-            btn_limpar.Location = new Point(639, 6);
-            btn_limpar.Margin = new Padding(3, 2, 3, 2);
-            btn_limpar.Name = "btn_limpar";
-            btn_limpar.Size = new Size(76, 22);
-            btn_limpar.TabIndex = 13;
-            btn_limpar.Text = "Limpar";
-            btn_limpar.UseVisualStyleBackColor = true;
-            btn_limpar.Click += btn_limpar_Click;
             // 
             // Planner
             // 
