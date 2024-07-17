@@ -180,7 +180,7 @@ namespace Finance.View.Planner
                     return;
                 }
 
-                if (_transactionController.Exists(amount, transactionType, category.Id, registerDate))
+                if (_transactionController.Exists(description,amount, transactionType, category.Id, registerDate))
                 {
                     MessageBox.Show("Já existe uma transação com esses dados", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;

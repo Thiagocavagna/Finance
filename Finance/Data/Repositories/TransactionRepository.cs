@@ -42,10 +42,10 @@ public class TransactionRepository : BaseRepository, ITransactionRepository
         return _context.Transactions.Any(x => x.CategoryId == categoryId); 
     }
 
-    public bool Exists(decimal amount, TransactionType type, Guid categoryId, DateTime registerDate)
+    public bool Exists(string description, decimal amount, TransactionType type, Guid categoryId, DateTime registerDate)
     {
         return _context.Transactions.Any(x => x.Amount == amount && x.Type == type && x.CategoryId == categoryId &&
-            x.RegisterDate == registerDate);
+            x.RegisterDate == registerDate && x.Description == description);
     }
 
     public Transaction GetById(Guid id)

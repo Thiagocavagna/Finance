@@ -18,8 +18,8 @@ namespace Finance.Controller.TransactionController
         public bool HasAnyTransactionWithCategory(Guid categoryId)
             => _repository.HasAnyTrasactionWithCategory(categoryId);
         
-        public bool Exists(decimal amount, TransactionType type, Guid categoryId, DateTime registerDate)
-            => _repository.Exists(amount, type, categoryId, registerDate);
+        public bool Exists(string description, decimal amount, TransactionType type, Guid categoryId, DateTime registerDate)
+            => _repository.Exists(description, amount, type, categoryId, registerDate);
 
         public void SaveTransaction(string description, decimal amount, DateTime registerDate, TransactionType type, Category category)
         {

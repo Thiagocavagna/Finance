@@ -32,7 +32,7 @@ namespace Finance.Data.Mapping
                 .HasForeignKey(x => x.CategoryId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasIndex(x => new { x.Amount, x.Type, x.CategoryId, x.RegisterDate })
+            builder.HasIndex(x => new { x.Description, x.Amount, x.Type, x.CategoryId, x.RegisterDate })
                 .IsUnique();
         }
     }
