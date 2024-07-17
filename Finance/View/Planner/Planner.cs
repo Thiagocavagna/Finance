@@ -70,7 +70,6 @@ namespace Finance.View.Planner
         public void LoadFilterCategories()
         {
             var categoriesFilter = _controller.GetAllCategories();
-
             cmbFilterCategory.DataSource = categoriesFilter;
             cmbFilterCategory.DisplayMember = "Name";
             cmbFilterCategory.ValueMember = "Id";
@@ -180,7 +179,7 @@ namespace Finance.View.Planner
                     return;
                 }
 
-                if (_transactionController.Exists(description,amount, transactionType, category.Id, registerDate))
+                if (_transactionController.Exists(description, amount, transactionType, category.Id, registerDate))
                 {
                     MessageBox.Show("Já existe uma transação com esses dados", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -188,6 +187,8 @@ namespace Finance.View.Planner
 
                 //TODO: retornar um result
                 _transactionController.SaveTransaction(description, amount, registerDate, transactionType, category);
+                txtDescription.Text = "";
+                num_amount.Value = 0;
 
                 LoadDataIntoDataGridView();
             }
@@ -362,7 +363,7 @@ namespace Finance.View.Planner
 
         private void btnFilter_Click(object sender, EventArgs e)
         {
-            LoadDataIntoDataGridView();           
+            LoadDataIntoDataGridView();
         }
 
         private void btn_limpar_Click(object sender, EventArgs e)
@@ -379,6 +380,16 @@ namespace Finance.View.Planner
             dateFilterEnd.Value = DateTime.Now.Date.AddDays(1).AddTicks(-1);
             dateFilterStart.Value = DateTime.Now.Date;
             cmbFilterCategory.Text = "";
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnPassword_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

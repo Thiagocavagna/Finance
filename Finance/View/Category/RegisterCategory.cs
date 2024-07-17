@@ -55,7 +55,6 @@ namespace Finance.View.TCategory
             CategoryAdded.Invoke(this, EventArgs.Empty);
             txtDescriptionCategory.Text = "";
             txtNameCategory.Text = "";
-
             this.Close();
             
         }

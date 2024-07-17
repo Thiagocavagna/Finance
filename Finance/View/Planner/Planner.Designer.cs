@@ -30,13 +30,14 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Planner));
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             menuStrip1 = new MenuStrip();
-            passwordToolStripMenuItem = new ToolStripMenuItem();
+            btnPassword = new ToolStripMenuItem();
             btnSave = new Button();
             PainelEntradaSaida = new Panel();
             rdSaida = new RadioButton();
@@ -98,26 +99,26 @@
             menuStrip1.BackColor = SystemColors.ControlDarkDark;
             menuStrip1.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { passwordToolStripMenuItem });
-            menuStrip1.Location = new Point(3, 2);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { btnPassword });
+            menuStrip1.Location = new Point(3, 3);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(5, 2, 0, 2);
-            menuStrip1.Size = new Size(1113, 27);
+            menuStrip1.Padding = new Padding(6, 3, 0, 3);
+            menuStrip1.Size = new Size(1273, 33);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
-            // passwordToolStripMenuItem
+            // btnPassword
             // 
-            passwordToolStripMenuItem.Name = "passwordToolStripMenuItem";
-            passwordToolStripMenuItem.Size = new Size(79, 23);
-            passwordToolStripMenuItem.Text = "Password";
+            btnPassword.Name = "btnPassword";
+            btnPassword.Size = new Size(94, 27);
+            btnPassword.Text = "Password";
+            btnPassword.Click += btnPassword_Click;
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(27, 358);
-            btnSave.Margin = new Padding(3, 2, 3, 2);
+            btnSave.Location = new Point(31, 477);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(282, 43);
+            btnSave.Size = new Size(322, 57);
             btnSave.TabIndex = 7;
             btnSave.Text = "Salvar";
             btnSave.UseVisualStyleBackColor = true;
@@ -128,19 +129,17 @@
             PainelEntradaSaida.BackColor = SystemColors.ButtonShadow;
             PainelEntradaSaida.Controls.Add(rdSaida);
             PainelEntradaSaida.Controls.Add(rdEntrada);
-            PainelEntradaSaida.Location = new Point(27, 292);
-            PainelEntradaSaida.Margin = new Padding(3, 2, 3, 2);
+            PainelEntradaSaida.Location = new Point(31, 389);
             PainelEntradaSaida.Name = "PainelEntradaSaida";
-            PainelEntradaSaida.Size = new Size(282, 40);
+            PainelEntradaSaida.Size = new Size(322, 53);
             PainelEntradaSaida.TabIndex = 6;
             // 
             // rdSaida
             // 
             rdSaida.AutoSize = true;
-            rdSaida.Location = new Point(158, 4);
-            rdSaida.Margin = new Padding(3, 2, 3, 2);
+            rdSaida.Location = new Point(181, 5);
             rdSaida.Name = "rdSaida";
-            rdSaida.Size = new Size(83, 34);
+            rdSaida.Size = new Size(104, 42);
             rdSaida.TabIndex = 6;
             rdSaida.Text = "Saída";
             rdSaida.UseVisualStyleBackColor = true;
@@ -151,10 +150,9 @@
             rdEntrada.BackColor = Color.Transparent;
             rdEntrada.Checked = true;
             rdEntrada.ForeColor = Color.Black;
-            rdEntrada.Location = new Point(30, 4);
-            rdEntrada.Margin = new Padding(3, 2, 3, 2);
+            rdEntrada.Location = new Point(34, 5);
             rdEntrada.Name = "rdEntrada";
-            rdEntrada.Size = new Size(104, 34);
+            rdEntrada.Size = new Size(131, 42);
             rdEntrada.TabIndex = 5;
             rdEntrada.TabStop = true;
             rdEntrada.Text = "Entrada";
@@ -164,10 +162,9 @@
             // 
             DateOfEntryOrExit.CalendarForeColor = SystemColors.ActiveBorder;
             DateOfEntryOrExit.CalendarTitleForeColor = SystemColors.ActiveBorder;
-            DateOfEntryOrExit.Location = new Point(27, 224);
-            DateOfEntryOrExit.Margin = new Padding(3, 2, 3, 2);
+            DateOfEntryOrExit.Location = new Point(31, 299);
             DateOfEntryOrExit.Name = "DateOfEntryOrExit";
-            DateOfEntryOrExit.Size = new Size(283, 36);
+            DateOfEntryOrExit.Size = new Size(323, 43);
             DateOfEntryOrExit.TabIndex = 4;
             DateOfEntryOrExit.Validating += DateOfEntryOrExit_Validating;
             // 
@@ -176,9 +173,9 @@
             Titulo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             Titulo.AutoSize = true;
             Titulo.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Titulo.Location = new Point(58, 14);
+            Titulo.Location = new Point(66, 19);
             Titulo.Name = "Titulo";
-            Titulo.Size = new Size(262, 25);
+            Titulo.Size = new Size(314, 31);
             Titulo.TabIndex = 1;
             Titulo.Text = "Preencha os campos abaixo:";
             // 
@@ -191,11 +188,10 @@
             PainelFundoBranco.Controls.Add(BoxPlanner);
             PainelFundoBranco.Controls.Add(Titulo);
             PainelFundoBranco.Controls.Add(boxRadio1);
-            PainelFundoBranco.Location = new Point(5, 29);
-            PainelFundoBranco.Margin = new Padding(3, 2, 3, 2);
+            PainelFundoBranco.Location = new Point(6, 39);
             PainelFundoBranco.Name = "PainelFundoBranco";
-            PainelFundoBranco.Padding = new Padding(4);
-            PainelFundoBranco.Size = new Size(1109, 612);
+            PainelFundoBranco.Padding = new Padding(5);
+            PainelFundoBranco.Size = new Size(1267, 816);
             PainelFundoBranco.TabIndex = 3;
             // 
             // BoxFooter
@@ -206,10 +202,9 @@
             BoxFooter.BorderRadius = 40;
             BoxFooter.Controls.Add(lblCurrentTime);
             BoxFooter.Controls.Add(label2);
-            BoxFooter.Location = new Point(7, 489);
-            BoxFooter.Margin = new Padding(3, 2, 3, 2);
+            BoxFooter.Location = new Point(8, 652);
             BoxFooter.Name = "BoxFooter";
-            BoxFooter.Size = new Size(1095, 117);
+            BoxFooter.Size = new Size(1251, 156);
             BoxFooter.TabIndex = 5;
             // 
             // lblCurrentTime
@@ -218,9 +213,9 @@
             lblCurrentTime.AutoSize = true;
             lblCurrentTime.Font = new Font("Microsoft Sans Serif", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblCurrentTime.ForeColor = SystemColors.Control;
-            lblCurrentTime.Location = new Point(15, 39);
+            lblCurrentTime.Location = new Point(17, 52);
             lblCurrentTime.Name = "lblCurrentTime";
-            lblCurrentTime.Size = new Size(284, 73);
+            lblCurrentTime.Size = new Size(347, 91);
             lblCurrentTime.TabIndex = 1;
             lblCurrentTime.Text = "22:35:00";
             // 
@@ -230,9 +225,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Verdana", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ButtonFace;
-            label2.Location = new Point(48, 4);
+            label2.Location = new Point(55, 5);
             label2.Name = "label2";
-            label2.Size = new Size(222, 38);
+            label2.Size = new Size(277, 48);
             label2.TabIndex = 0;
             label2.Text = "Hora Atual:";
             // 
@@ -252,30 +247,29 @@
             BoxPrencher.Controls.Add(PainelEntradaSaida);
             BoxPrencher.Controls.Add(DateOfEntryOrExit);
             BoxPrencher.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BoxPrencher.Location = new Point(7, 43);
-            BoxPrencher.Margin = new Padding(3, 2, 3, 2);
+            BoxPrencher.Location = new Point(8, 57);
             BoxPrencher.Name = "BoxPrencher";
-            BoxPrencher.Padding = new Padding(4);
-            BoxPrencher.Size = new Size(347, 442);
+            BoxPrencher.Padding = new Padding(5);
+            BoxPrencher.Size = new Size(397, 589);
             BoxPrencher.TabIndex = 1;
             // 
             // num_amount
             // 
             num_amount.DecimalPlaces = 2;
             num_amount.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            num_amount.Location = new Point(27, 89);
+            num_amount.Location = new Point(31, 119);
+            num_amount.Margin = new Padding(3, 4, 3, 4);
             num_amount.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
             num_amount.Name = "num_amount";
-            num_amount.Size = new Size(286, 36);
+            num_amount.Size = new Size(327, 43);
             num_amount.TabIndex = 2;
             // 
             // txtDescription
             // 
-            txtDescription.Location = new Point(27, 32);
-            txtDescription.Margin = new Padding(3, 2, 3, 2);
+            txtDescription.Location = new Point(31, 43);
             txtDescription.Name = "txtDescription";
             txtDescription.PlaceholderText = "Descrição";
-            txtDescription.Size = new Size(282, 36);
+            txtDescription.Size = new Size(322, 43);
             txtDescription.TabIndex = 1;
             txtDescription.Validating += txtDescription_Validating;
             // 
@@ -286,10 +280,9 @@
             btnExcluir.BackgroundImageLayout = ImageLayout.Center;
             btnExcluir.FlatStyle = FlatStyle.Flat;
             btnExcluir.ForeColor = SystemColors.ActiveBorder;
-            btnExcluir.Location = new Point(311, 157);
-            btnExcluir.Margin = new Padding(3, 2, 3, 2);
+            btnExcluir.Location = new Point(355, 209);
             btnExcluir.Name = "btnExcluir";
-            btnExcluir.Size = new Size(24, 34);
+            btnExcluir.Size = new Size(27, 45);
             btnExcluir.TabIndex = 10;
             btnExcluir.UseVisualStyleBackColor = false;
             btnExcluir.Click += btnExcluir_Click;
@@ -302,10 +295,9 @@
             btnAdd.Cursor = Cursors.Hand;
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.ForeColor = SystemColors.ActiveBorder;
-            btnAdd.Location = new Point(279, 157);
-            btnAdd.Margin = new Padding(3, 2, 3, 2);
+            btnAdd.Location = new Point(319, 209);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(25, 34);
+            btnAdd.Size = new Size(29, 45);
             btnAdd.TabIndex = 9;
             btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
@@ -313,10 +305,9 @@
             // cmbCategory
             // 
             cmbCategory.FormattingEnabled = true;
-            cmbCategory.Location = new Point(27, 157);
-            cmbCategory.Margin = new Padding(3, 2, 3, 2);
+            cmbCategory.Location = new Point(31, 209);
             cmbCategory.Name = "cmbCategory";
-            cmbCategory.Size = new Size(246, 38);
+            cmbCategory.Size = new Size(281, 45);
             cmbCategory.TabIndex = 3;
             cmbCategory.SelectedIndexChanged += cmbCategory_SelectedIndexChanged;
             cmbCategory.Validating += cmbCategory_Validating;
@@ -331,11 +322,10 @@
             BoxPlanner.BorderRadius = 40;
             BoxPlanner.Controls.Add(dataGridView1);
             BoxPlanner.Controls.Add(dvPlanner);
-            BoxPlanner.Location = new Point(360, 43);
-            BoxPlanner.Margin = new Padding(3, 2, 3, 2);
+            BoxPlanner.Location = new Point(411, 57);
             BoxPlanner.Name = "BoxPlanner";
-            BoxPlanner.Padding = new Padding(4);
-            BoxPlanner.Size = new Size(745, 442);
+            BoxPlanner.Padding = new Padding(5);
+            BoxPlanner.Size = new Size(851, 589);
             BoxPlanner.TabIndex = 0;
             // 
             // dataGridView1
@@ -347,33 +337,44 @@
             dataGridView1.BackgroundColor = SystemColors.ActiveBorder;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.ActiveBorder;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { totalEntrada, totalSaida, totalRestante });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Window;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
-            dataGridView1.GridColor = SystemColors.ActiveBorder;
-            dataGridView1.Location = new Point(9, 381);
-            dataGridView1.Margin = new Padding(3, 2, 3, 2);
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Window;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridView1.GridColor = Color.Green;
+            dataGridView1.Location = new Point(11, 508);
+            dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
-            dataGridView1.Size = new Size(717, 44);
+            dataGridView1.Size = new Size(818, 59);
             dataGridView1.TabIndex = 4;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // totalEntrada
             // 
-            dataGridViewCellStyle1.Format = "C2";
-            dataGridViewCellStyle1.NullValue = "0,00";
-            totalEntrada.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = "0,00";
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            totalEntrada.DefaultCellStyle = dataGridViewCellStyle2;
             totalEntrada.HeaderText = "Entrada";
             totalEntrada.MinimumWidth = 6;
             totalEntrada.Name = "totalEntrada";
@@ -381,9 +382,11 @@
             // 
             // totalSaida
             // 
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = "0,00";
-            totalSaida.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = "0,00";
+            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
+            totalSaida.DefaultCellStyle = dataGridViewCellStyle3;
             totalSaida.HeaderText = "Saida";
             totalSaida.MinimumWidth = 6;
             totalSaida.Name = "totalSaida";
@@ -391,9 +394,11 @@
             // 
             // totalRestante
             // 
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = "0,00";
-            totalRestante.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = "0,00";
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            totalRestante.DefaultCellStyle = dataGridViewCellStyle4;
             totalRestante.HeaderText = "Saldo";
             totalRestante.MinimumWidth = 6;
             totalRestante.Name = "totalRestante";
@@ -407,12 +412,11 @@
             dvPlanner.BorderStyle = BorderStyle.Fixed3D;
             dvPlanner.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dvPlanner.Columns.AddRange(new DataGridViewColumn[] { Id, Descricao, Valor, Data, Tipo, Category, btnDeleteTransaction });
-            dvPlanner.Location = new Point(21, 10);
-            dvPlanner.Margin = new Padding(3, 2, 3, 2);
+            dvPlanner.Location = new Point(24, 13);
             dvPlanner.Name = "dvPlanner";
             dvPlanner.RowHeadersVisible = false;
             dvPlanner.RowHeadersWidth = 51;
-            dvPlanner.Size = new Size(717, 367);
+            dvPlanner.Size = new Size(819, 489);
             dvPlanner.TabIndex = 0;
             dvPlanner.TabStop = false;
             dvPlanner.CellClick += dvPlanner_CellClick;
@@ -427,9 +431,11 @@
             Id.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             Id.Frozen = true;
             Id.HeaderText = "Id";
+            Id.MinimumWidth = 6;
             Id.Name = "Id";
             Id.ReadOnly = true;
             Id.Visible = false;
+            Id.Width = 125;
             // 
             // Descricao
             // 
@@ -475,13 +481,13 @@
             // 
             // btnDeleteTransaction
             // 
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = Color.Red;
-            dataGridViewCellStyle5.ForeColor = Color.Black;
-            dataGridViewCellStyle5.Padding = new Padding(2);
-            dataGridViewCellStyle5.SelectionBackColor = Color.Red;
-            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
-            btnDeleteTransaction.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = Color.Red;
+            dataGridViewCellStyle6.ForeColor = Color.Black;
+            dataGridViewCellStyle6.Padding = new Padding(2);
+            dataGridViewCellStyle6.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
+            btnDeleteTransaction.DefaultCellStyle = dataGridViewCellStyle6;
             btnDeleteTransaction.FillWeight = 5F;
             btnDeleteTransaction.FlatStyle = FlatStyle.Flat;
             btnDeleteTransaction.HeaderText = "Deletar";
@@ -502,19 +508,17 @@
             boxRadio1.Controls.Add(cmbFilterCategory);
             boxRadio1.Controls.Add(btnFilter);
             boxRadio1.Controls.Add(dateFilterEnd);
-            boxRadio1.Location = new Point(369, 6);
-            boxRadio1.Margin = new Padding(3, 2, 3, 2);
+            boxRadio1.Location = new Point(422, 8);
             boxRadio1.Name = "boxRadio1";
-            boxRadio1.Size = new Size(733, 32);
+            boxRadio1.Size = new Size(838, 43);
             boxRadio1.TabIndex = 8;
             // 
             // btn_limpar
             // 
             btn_limpar.Anchor = AnchorStyles.None;
-            btn_limpar.Location = new Point(639, 6);
-            btn_limpar.Margin = new Padding(3, 2, 3, 2);
+            btn_limpar.Location = new Point(730, 8);
             btn_limpar.Name = "btn_limpar";
-            btn_limpar.Size = new Size(76, 22);
+            btn_limpar.Size = new Size(87, 29);
             btn_limpar.TabIndex = 13;
             btn_limpar.Text = "Limpar";
             btn_limpar.UseVisualStyleBackColor = true;
@@ -525,9 +529,9 @@
             lbla.Anchor = AnchorStyles.None;
             lbla.AutoSize = true;
             lbla.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbla.Location = new Point(429, 5);
+            lbla.Location = new Point(490, 7);
             lbla.Name = "lbla";
-            lbla.Size = new Size(34, 21);
+            lbla.Size = new Size(42, 28);
             lbla.TabIndex = 12;
             lbla.Text = "até";
             // 
@@ -535,10 +539,9 @@
             // 
             dateFilterStart.Anchor = AnchorStyles.None;
             dateFilterStart.Format = DateTimePickerFormat.Short;
-            dateFilterStart.Location = new Point(344, 5);
-            dateFilterStart.Margin = new Padding(3, 2, 3, 2);
+            dateFilterStart.Location = new Point(393, 7);
             dateFilterStart.Name = "dateFilterStart";
-            dateFilterStart.Size = new Size(79, 23);
+            dateFilterStart.Size = new Size(90, 27);
             dateFilterStart.TabIndex = 11;
             dateFilterStart.ValueChanged += dateFilterStart_ValueChanged;
             // 
@@ -547,9 +550,9 @@
             label4.Anchor = AnchorStyles.None;
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(37, 5);
+            label4.Location = new Point(42, 7);
             label4.Name = "label4";
-            label4.Size = new Size(50, 21);
+            label4.Size = new Size(62, 28);
             label4.TabIndex = 10;
             label4.Text = "Filtro";
             // 
@@ -557,20 +560,18 @@
             // 
             cmbFilterCategory.Anchor = AnchorStyles.None;
             cmbFilterCategory.FormattingEnabled = true;
-            cmbFilterCategory.Location = new Point(90, 5);
-            cmbFilterCategory.Margin = new Padding(3, 2, 3, 2);
+            cmbFilterCategory.Location = new Point(103, 7);
             cmbFilterCategory.Name = "cmbFilterCategory";
-            cmbFilterCategory.Size = new Size(246, 23);
+            cmbFilterCategory.Size = new Size(281, 28);
             cmbFilterCategory.TabIndex = 9;
             cmbFilterCategory.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // btnFilter
             // 
             btnFilter.Anchor = AnchorStyles.None;
-            btnFilter.Location = new Point(557, 6);
-            btnFilter.Margin = new Padding(3, 2, 3, 2);
+            btnFilter.Location = new Point(637, 8);
             btnFilter.Name = "btnFilter";
-            btnFilter.Size = new Size(76, 22);
+            btnFilter.Size = new Size(87, 29);
             btnFilter.TabIndex = 7;
             btnFilter.Text = "Aplicar";
             btnFilter.UseVisualStyleBackColor = true;
@@ -580,10 +581,9 @@
             // 
             dateFilterEnd.Anchor = AnchorStyles.None;
             dateFilterEnd.Format = DateTimePickerFormat.Short;
-            dateFilterEnd.Location = new Point(470, 5);
-            dateFilterEnd.Margin = new Padding(3, 2, 3, 2);
+            dateFilterEnd.Location = new Point(537, 7);
             dateFilterEnd.Name = "dateFilterEnd";
-            dateFilterEnd.Size = new Size(79, 23);
+            dateFilterEnd.Size = new Size(90, 27);
             dateFilterEnd.TabIndex = 6;
             dateFilterEnd.ValueChanged += dateFilterEnd_ValueChanged;
             // 
@@ -607,19 +607,18 @@
             // 
             // Planner
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(1119, 646);
+            ClientSize = new Size(1279, 861);
             Controls.Add(PainelFundoBranco);
             Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
-            MinimumSize = new Size(1034, 681);
+            MinimumSize = new Size(1179, 892);
             Name = "Planner";
-            Padding = new Padding(3, 2, 3, 2);
+            Padding = new Padding(3);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Planner";
             WindowState = FormWindowState.Maximized;
@@ -651,7 +650,7 @@
         #endregion
 
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem passwordToolStripMenuItem;
+        private ToolStripMenuItem btnPassword;
         private Panel PainelFundoBranco;
         private Label Titulo;
         private DateTimePicker DateOfEntryOrExit;
@@ -679,9 +678,6 @@
         private ComboBox cmbFilterCategory;
         private Label label4;
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn totalEntrada;
-        private DataGridViewTextBoxColumn totalSaida;
-        private DataGridViewTextBoxColumn totalRestante;
         private BindingSource categoryBindingSource;
         private Label lbla;
         private DateTimePicker dateFilterStart;
@@ -694,5 +690,8 @@
         private DataGridViewComboBoxColumn Category;
         private DataGridViewButtonColumn btnDeleteTransaction;
         private Button btn_limpar;
+        private DataGridViewTextBoxColumn totalEntrada;
+        private DataGridViewTextBoxColumn totalSaida;
+        private DataGridViewTextBoxColumn totalRestante;
     }
 }
