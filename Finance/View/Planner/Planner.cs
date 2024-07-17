@@ -1,6 +1,7 @@
 ﻿using Finance.Controller.TransactionController;
 using Finance.Model.Enumerations;
 using Finance.Model.Views;
+using Finance.View.Password;
 using Finance.View.TCategory;
 using Finance_Project.Model.Entities;
 using System.Globalization;
@@ -388,6 +389,12 @@ namespace Finance.View.Planner
         }
 
         private void btnPassword_Click(object sender, EventArgs e)
+        {
+            UpdatePassword password = new UpdatePassword();
+            password.Show();
+        }
+
+        private void categoryBindingSource1_CurrentChanged(object sender, EventArgs e)
         {
 
         }

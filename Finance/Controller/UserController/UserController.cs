@@ -48,4 +48,9 @@ public class UserController : ControllerBase, IUserController
 
         return password.VerifyPassword(user.Password);
     }
+
+    public void UpdatePassword(string senhaAtual, string novaSenha, string confirmSenha)
+    {
+        _repository.updatePassword(senhaAtual, novaSenha, confirmSenha);
+    }
 }

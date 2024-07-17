@@ -30,6 +30,17 @@ namespace Finance.Data.Repositories
 
             return count > 0;
         }
+        public void updatePassword(string senhaAtual, string novaSenha, string confirmSenha)
+        {
+            var user = _context.Users.FirstOrDefault();
+            if (user == null) {
+                MessageBox.Show("Usuario não encontrado");
+                return;
+            }
+            user.Password = novaSenha;
+            _context.Update(user);
+            _context.SaveChanges();
+        }
     }
     
     

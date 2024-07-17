@@ -30,12 +30,12 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Planner));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
             menuStrip1 = new MenuStrip();
             btnPassword = new ToolStripMenuItem();
             btnSave = new Button();
@@ -173,7 +173,7 @@
             Titulo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             Titulo.AutoSize = true;
             Titulo.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Titulo.Location = new Point(66, 19);
+            Titulo.Location = new Point(50, 19);
             Titulo.Name = "Titulo";
             Titulo.Size = new Size(314, 31);
             Titulo.TabIndex = 1;
@@ -337,24 +337,24 @@
             dataGridView1.BackgroundColor = SystemColors.ActiveBorder;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.ActiveBorder;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.ActiveBorder;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { totalEntrada, totalSaida, totalRestante });
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Window;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = SystemColors.Window;
+            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle11.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Window;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle11;
             dataGridView1.GridColor = Color.Green;
             dataGridView1.Location = new Point(11, 508);
             dataGridView1.MultiSelect = false;
@@ -370,11 +370,11 @@
             // 
             // totalEntrada
             // 
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = "0,00";
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            totalEntrada.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.ForeColor = Color.Black;
+            dataGridViewCellStyle8.Format = "C2";
+            dataGridViewCellStyle8.NullValue = "0,00";
+            dataGridViewCellStyle8.SelectionForeColor = Color.Black;
+            totalEntrada.DefaultCellStyle = dataGridViewCellStyle8;
             totalEntrada.HeaderText = "Entrada";
             totalEntrada.MinimumWidth = 6;
             totalEntrada.Name = "totalEntrada";
@@ -382,11 +382,11 @@
             // 
             // totalSaida
             // 
-            dataGridViewCellStyle3.ForeColor = Color.Black;
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = "0,00";
-            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
-            totalSaida.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.ForeColor = Color.Black;
+            dataGridViewCellStyle9.Format = "C2";
+            dataGridViewCellStyle9.NullValue = "0,00";
+            dataGridViewCellStyle9.SelectionForeColor = Color.Black;
+            totalSaida.DefaultCellStyle = dataGridViewCellStyle9;
             totalSaida.HeaderText = "Saida";
             totalSaida.MinimumWidth = 6;
             totalSaida.Name = "totalSaida";
@@ -394,11 +394,11 @@
             // 
             // totalRestante
             // 
-            dataGridViewCellStyle4.ForeColor = Color.Black;
-            dataGridViewCellStyle4.Format = "C2";
-            dataGridViewCellStyle4.NullValue = "0,00";
-            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
-            totalRestante.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.ForeColor = Color.Black;
+            dataGridViewCellStyle10.Format = "C2";
+            dataGridViewCellStyle10.NullValue = "0,00";
+            dataGridViewCellStyle10.SelectionForeColor = Color.Black;
+            totalRestante.DefaultCellStyle = dataGridViewCellStyle10;
             totalRestante.HeaderText = "Saldo";
             totalRestante.MinimumWidth = 6;
             totalRestante.Name = "totalRestante";
@@ -481,13 +481,13 @@
             // 
             // btnDeleteTransaction
             // 
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = Color.Red;
-            dataGridViewCellStyle6.ForeColor = Color.Black;
-            dataGridViewCellStyle6.Padding = new Padding(2);
-            dataGridViewCellStyle6.SelectionBackColor = Color.Red;
-            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
-            btnDeleteTransaction.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = Color.Red;
+            dataGridViewCellStyle12.ForeColor = Color.Black;
+            dataGridViewCellStyle12.Padding = new Padding(2);
+            dataGridViewCellStyle12.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle12.SelectionForeColor = Color.Black;
+            btnDeleteTransaction.DefaultCellStyle = dataGridViewCellStyle12;
             btnDeleteTransaction.FillWeight = 5F;
             btnDeleteTransaction.FlatStyle = FlatStyle.Flat;
             btnDeleteTransaction.HeaderText = "Deletar";
@@ -604,6 +604,7 @@
             // categoryBindingSource1
             // 
             categoryBindingSource1.DataSource = typeof(Finance_Project.Model.Entities.Category);
+            categoryBindingSource1.CurrentChanged += categoryBindingSource1_CurrentChanged;
             // 
             // Planner
             // 
