@@ -130,7 +130,8 @@ namespace Finance.View.Planner
             foreach (var transaction in transactions)
             {
                 var formattedAmount = transaction.Amount.ToString("C", new CultureInfo("pt-BR"));
-                dvPlanner.Rows.Add(transaction.Id, transaction.Description, formattedAmount, transaction.RegisterDate,
+                var formattedDate = transaction.RegisterDate.ToString("dd/MM/yyyy");
+                dvPlanner.Rows.Add(transaction.Id, transaction.Description, formattedAmount, formattedDate,
                     transaction.Type, transaction.Category.Id);
             }
 
