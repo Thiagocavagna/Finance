@@ -1,26 +1,34 @@
-Sistema de Gerenciamento Financeiro
-Visão Geral
+# Sistema de Gerenciamento Financeiro
+
+## Visão Geral
+
 O Sistema de Gerenciamento Financeiro é um aplicativo Windows Forms projetado para ajudar os usuários a gerenciar suas transações financeiras. Ele permite que os usuários registrem categorias, adicionem transações e visualizem seus dados financeiros de maneira estruturada.
 
-Funcionalidades
-Registro de Usuário: Registrar um único usuário com nome, email e senha.
-Gerenciamento de Categorias: Adicionar, editar e excluir categorias.
-Gerenciamento de Transações: Adicionar, visualizar e excluir transações financeiras.
-Integração com DataGridView: Exibir transações em um DataGridView com campos editáveis.
-Atualizações em Tempo Real: Atualizar automaticamente o DataGridView quando novas transações ou categorias são adicionadas.
-Localização: Valores exibidos em Real Brasileiro (R$).
-Instalação
-Pré-requisitos
-.NET Framework
-SQL Server
-Passos
-Clonar o Repositório
+## Funcionalidades
 
-bash
-Copiar código
-git clone https://github.com/seuusuario/SistemaGerenciamentoFinanceiro.git
-cd SistemaGerenciamentoFinanceiro
-Configurar o Banco de Dados
+- **Registro de Usuário:** Registrar um único usuário com nome, email e senha.
+- **Gerenciamento de Categorias:** Adicionar, editar e excluir categorias.
+- **Gerenciamento de Transações:** Adicionar, visualizar e excluir transações financeiras.
+- **Integração com DataGridView:** Exibir transações em um DataGridView com campos editáveis.
+- **Atualizações em Tempo Real:** Atualizar automaticamente o DataGridView quando novas transações ou categorias são adicionadas.
+- **Localização:** Valores exibidos em Real Brasileiro (R$).
+
+## Instalação
+
+### Pré-requisitos
+
+- [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework)
+- [SQL Server](https://www.microsoft.com/pt-br/sql-server/sql-server-downloads)
+
+### Passos
+
+1. **Clonar o Repositório**
+
+   ```bash
+   git clone https://github.com/Thiagocavagna/Finance.git
+   cd Finance
+
+### Configurar o Banco de Dados
 
 Crie um novo banco de dados no SQL Server.
 Atualize a string de conexão no FinanceDbContext com os detalhes do seu banco de dados.
