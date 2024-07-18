@@ -54,7 +54,7 @@
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(309, 37);
-            txtPassword.TabIndex = 2;
+            txtPassword.TabIndex = 1;
             txtPassword.KeyDown += txtPassword_KeyDown;
             // 
             // label2
@@ -74,7 +74,7 @@
             btnLogin.Margin = new Padding(6);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(309, 46);
-            btnLogin.TabIndex = 0;
+            btnLogin.TabIndex = 2;
             btnLogin.Text = "Logar";
             btnLogin.UseVisualStyleBackColor = false;
             btnLogin.Click += btnLogin_Click;
