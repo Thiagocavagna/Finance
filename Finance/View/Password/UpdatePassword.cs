@@ -22,6 +22,7 @@ namespace Finance.View.Password
 
         private void button1_Click(object sender, EventArgs e)
         {
+            _shouldValidate = true;
             if (ValidateChildren())
             {
                 var currentPassword = txtSenhaAtual.Text;
@@ -39,6 +40,7 @@ namespace Finance.View.Password
             {
                 MessageBox.Show("Preencha todos os campos");
             }
+            _shouldValidate = false;
         }
 
         private void txtSenhaAtual_Validating(object sender, CancelEventArgs e)
@@ -51,7 +53,7 @@ namespace Finance.View.Password
             else if (!Validations.PasswordIsValid(txtSenhaAtual.Text))
             {
                 errorPassword.SetError(txtSenhaAtual, "Senha inválida. A senha deve conter no mínimo 8 caracteres e um caracter especial.");
-                if (_shouldValidate) e.Cancel = true;
+                if (_shouldValidate) e.Cancel = _shouldValidate;
             }
             else
             {

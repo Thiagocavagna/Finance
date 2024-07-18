@@ -1,8 +1,10 @@
-﻿namespace Finance.Model.Enumerations
+﻿using System.ComponentModel;
+
+namespace Finance.Model.Enumerations
 {
     public enum TransactionType
     {
-        Receipts,
-        Expense
+        Entrada,
+        Saida
     }
 }

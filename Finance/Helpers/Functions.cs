@@ -1,4 +1,7 @@
-﻿namespace Finance.Helpers
+﻿using System.ComponentModel;
+using System.Reflection;
+
+namespace Finance.Helpers
 {
     public static class Functions
     {
@@ -16,7 +19,7 @@
             bool isValid = BCrypt.Net.BCrypt.Verify(password, hashedPassword);
 
             return isValid;
-        }
+        }     
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Finance.Controller.TransactionController;
+using Finance.Helpers;
 using Finance.Model.Enumerations;
 using Finance.Model.Views;
 using Finance.View.Password;
@@ -7,7 +8,7 @@ using Finance_Project.Model.Entities;
 using System.Globalization;
 
 namespace Finance.View.Planner
-{
+{    
     public partial class Planner : Form
     {
         private readonly CategoryController _controller;
@@ -28,6 +29,7 @@ namespace Finance.View.Planner
             LoadCategoriesIntoComboBoxColumn();
             InitializeFilters();
             LoadDataIntoDataGridView();
+            LoadTransactionType();
         }
 
         private void Planner_Load(object sender, EventArgs e)
@@ -75,6 +77,17 @@ namespace Finance.View.Planner
             cmbFilterCategory.DataSource = categoriesFilter;
             cmbFilterCategory.DisplayMember = "Name";
             cmbFilterCategory.ValueMember = "Id";
+        }
+
+        public void LoadTransactionType()
+        {
+            //cmb_Type.ValueType = typeof(TransactionType);
+            //cmb_Type.ValueMember = "Value";
+            //cmb_Type.DisplayMember = "TransactionType";
+            //cmb_Type.DataSource = new TransactionType[]
+            //    { TransactionType.Expense, TransactionType.Receipts }
+            //    .Select(value => new { Display = value.ToString(), Value = value })
+            //    .ToList();
         }
 
         private void EventoLoadCategory(object sender, EventArgs e)
@@ -132,7 +145,7 @@ namespace Finance.View.Planner
                 var formattedAmount = transaction.Amount.ToString("C", new CultureInfo("pt-BR"));
                 var formattedDate = transaction.RegisterDate.ToString("dd/MM/yyyy");
                 dvPlanner.Rows.Add(transaction.Id, transaction.Description, formattedAmount, formattedDate,
-                    transaction.Type, transaction.Category.Id);
+                    transaction.Type.ToString(), transaction.Category.Id);
             }
 
             dvPlanner.ReadOnly = false;
@@ -140,8 +153,8 @@ namespace Finance.View.Planner
             dvPlanner.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dvPlanner.AllowUserToAddRows = false;
 
-            var expenseSum = transactions.Sum(x => x.Type == TransactionType.Expense ? x.Amount : 0);
-            var receiptsSum = transactions.Sum(x => x.Type == TransactionType.Receipts ? x.Amount : 0);
+            var expenseSum = transactions.Sum(x => x.Type == TransactionType.Saida ? x.Amount : 0);
+            var receiptsSum = transactions.Sum(x => x.Type == TransactionType.Entrada ? x.Amount : 0);
             var balance = receiptsSum - expenseSum;
 
             dataGridView1.Rows[0].Cells["totalEntrada"].Value = receiptsSum;
@@ -170,11 +183,11 @@ namespace Finance.View.Planner
 
                 if (rdEntrada.Checked)
                 {
-                    transactionType = TransactionType.Receipts;
+                    transactionType = TransactionType.Entrada;
                 }
                 else
                 {
-                    transactionType = TransactionType.Expense;
+                    transactionType = TransactionType.Saida;
                 }
                 var category = cmbCategory.SelectedItem as Category;
 
@@ -333,7 +346,7 @@ namespace Finance.View.Planner
 
             var description = editedRow.Cells["Descricao"].Value.ToString();
             var registerDate = Convert.ToDateTime(editedRow.Cells["Data"].Value);
-            var type = (TransactionType)Enum.Parse(typeof(TransactionType), editedRow.Cells["Tipo"]?.Value?.ToString());
+            var type = (TransactionType)Enum.Parse(typeof(TransactionType), editedRow.Cells["cmb_Type"]?.Value?.ToString());
 
 
             TransactionRequest request = new TransactionRequest
