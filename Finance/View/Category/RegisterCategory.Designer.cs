@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             txtNameCategory = new TextBox();
             button1 = new Button();
             btnAddCategory = new Button();
             txtDescriptionCategory = new TextBox();
+            errorCategory = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)errorCategory).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -54,6 +57,7 @@
             txtNameCategory.Size = new Size(302, 27);
             txtNameCategory.TabIndex = 1;
             txtNameCategory.TextChanged += textBox1_TextChanged;
+            txtNameCategory.Validating += txtNameCategory_Validating;
             // 
             // button1
             // 
@@ -89,6 +93,11 @@
             txtDescriptionCategory.PlaceholderText = "Descrição";
             txtDescriptionCategory.Size = new Size(302, 27);
             txtDescriptionCategory.TabIndex = 2;
+            txtDescriptionCategory.Validating += txtDescriptionCategory_Validating;
+            // 
+            // errorCategory
+            // 
+            errorCategory.ContainerControl = this;
             // 
             // RegisterCategory
             // 
@@ -103,6 +112,7 @@
             Name = "RegisterCategory";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "RegisterCategory";
+            ((System.ComponentModel.ISupportInitialize)errorCategory).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -114,5 +124,6 @@
         private Button button1;
         private Button btnAddCategory;
         private TextBox txtDescriptionCategory;
+        private ErrorProvider errorCategory;
     }
 }

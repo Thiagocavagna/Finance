@@ -18,6 +18,7 @@ namespace Finance.View.TCategory
     {
         private readonly CategoryController _controller;
         public event EventHandler CategoryAdded;
+        private bool _shouldValidate;
 
 
         public string CategoryName { get; set; }
@@ -27,7 +28,7 @@ namespace Finance.View.TCategory
         {
             InitializeComponent();
             _controller = new CategoryController();
-            
+
 
         }
 
@@ -43,20 +44,50 @@ namespace Finance.View.TCategory
 
         private void btnAddCategory_Click(object sender, EventArgs e)
         {
-            if(_controller.AlreadyExists(txtNameCategory.Text))
+            _shouldValidate = true;
+            if (ValidateChildren())
             {
-                MessageBox.Show("Já existe uma categoria com esse nome cadastrado!");
-                return;
-            }
+                if (_controller.AlreadyExists(txtNameCategory.Text))
+                {
+                    MessageBox.Show("Já existe uma categoria com esse nome cadastrado!");
+                    return;
+                }
 
-            CategoryName = txtNameCategory.Text;
-            CategoryDescription = txtDescriptionCategory.Text;
-            _controller.AddCategory(CategoryName, CategoryDescription);
-            CategoryAdded.Invoke(this, EventArgs.Empty);
-            txtDescriptionCategory.Text = "";
-            txtNameCategory.Text = "";
-            this.Close();
-            
+                CategoryName = txtNameCategory.Text;
+                CategoryDescription = txtDescriptionCategory.Text;
+                _controller.AddCategory(CategoryName, CategoryDescription);
+                CategoryAdded.Invoke(this, EventArgs.Empty);
+                txtDescriptionCategory.Text = "";
+                txtNameCategory.Text = "";
+                this.Close();
+            }
+            _shouldValidate = false;
+        }
+
+        private void txtNameCategory_Validating(object sender, CancelEventArgs e)
+        {
+            if(string.IsNullOrEmpty(txtNameCategory.Text)) {
+                txtNameCategory.Focus();
+                errorCategory.SetError(txtNameCategory, "Campo obrigatório");
+                e.Cancel = _shouldValidate;
+            }
+            else
+            {
+                errorCategory.SetError(txtNameCategory, null);
+            }
+        }
+
+        private void txtDescriptionCategory_Validating(object sender, CancelEventArgs e)
+        {
+            if(string.IsNullOrEmpty(txtDescriptionCategory.Text)) {
+                txtDescriptionCategory.Focus();
+                errorCategory.SetError(txtDescriptionCategory, "Campo obrigatório");
+                e.Cancel = _shouldValidate;
+            }
+            else
+            {
+                errorCategory.SetError(txtDescriptionCategory, null);
+            }
         }
     }
 }

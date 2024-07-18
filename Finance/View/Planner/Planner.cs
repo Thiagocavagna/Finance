@@ -13,6 +13,7 @@ namespace Finance.View.Planner
         private readonly CategoryController _controller;
         private readonly TransactionController _transactionController;
         private TransactionFilter _filter = new();
+        private bool _shouldValidate;
 
         public Planner()
         {
@@ -50,7 +51,7 @@ namespace Finance.View.Planner
         {
             var register = new RegisterCategory();
             register.CategoryAdded += EventoLoadCategory;
-            register.Show();
+            register.ShowDialog();
         }
         public void LoadCategories()
         {
@@ -158,6 +159,7 @@ namespace Finance.View.Planner
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            _shouldValidate = true;
             if (ValidateChildren())
             {
                 string description = txtDescription.Text;
@@ -193,6 +195,7 @@ namespace Finance.View.Planner
                 num_amount.Value = 0;
 
                 LoadDataIntoDataGridView();
+                _shouldValidate = false;
             }
         }
 
@@ -201,6 +204,7 @@ namespace Finance.View.Planner
             if (string.IsNullOrWhiteSpace(txtDescription.Text))
             {
                 errorProvider1.SetError(txtDescription, "A descrição não pode estar vazia.");
+                e.Cancel = _shouldValidate;
             }
             else
             {
@@ -213,6 +217,7 @@ namespace Finance.View.Planner
             if (num_amount.Value <= 0)
             {
                 errorProvider1.SetError(num_amount, "O valor deve ser um número positivo.");
+                e.Cancel = _shouldValidate;
             }
             else
             {
@@ -392,7 +397,7 @@ namespace Finance.View.Planner
         private void btnPassword_Click(object sender, EventArgs e)
         {
             UpdatePassword password = new UpdatePassword();
-            password.Show();
+            password.ShowDialog();
         }
 
         private void categoryBindingSource1_CurrentChanged(object sender, EventArgs e)
