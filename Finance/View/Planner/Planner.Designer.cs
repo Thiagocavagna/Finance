@@ -30,12 +30,12 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Planner));
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             menuStrip1 = new MenuStrip();
             btnPassword = new ToolStripMenuItem();
             btnSave = new Button();
@@ -60,13 +60,6 @@
             totalSaida = new DataGridViewTextBoxColumn();
             totalRestante = new DataGridViewTextBoxColumn();
             dvPlanner = new DataGridView();
-            Id = new DataGridViewTextBoxColumn();
-            Descricao = new DataGridViewTextBoxColumn();
-            Valor = new DataGridViewTextBoxColumn();
-            Data = new DataGridViewTextBoxColumn();
-            Tipo = new DataGridViewTextBoxColumn();
-            Category = new DataGridViewComboBoxColumn();
-            btnDeleteTransaction = new DataGridViewButtonColumn();
             boxRadio1 = new BoxRadio();
             btn_limpar = new Button();
             lbla = new Label();
@@ -79,6 +72,13 @@
             timerCurrentTime = new System.Windows.Forms.Timer(components);
             errorProvider1 = new ErrorProvider(components);
             categoryBindingSource1 = new BindingSource(components);
+            Id = new DataGridViewTextBoxColumn();
+            Descricao = new DataGridViewTextBoxColumn();
+            Valor = new DataGridViewTextBoxColumn();
+            Data = new DataGridViewTextBoxColumn();
+            Tipo = new DataGridViewTextBoxColumn();
+            Category = new DataGridViewComboBoxColumn();
+            btnDeleteTransaction = new DataGridViewButtonColumn();
             menuStrip1.SuspendLayout();
             PainelEntradaSaida.SuspendLayout();
             PainelFundoBranco.SuspendLayout();
@@ -162,6 +162,7 @@
             // 
             DateOfEntryOrExit.CalendarForeColor = SystemColors.ActiveBorder;
             DateOfEntryOrExit.CalendarTitleForeColor = SystemColors.ActiveBorder;
+            DateOfEntryOrExit.Format = DateTimePickerFormat.Short;
             DateOfEntryOrExit.Location = new Point(31, 299);
             DateOfEntryOrExit.Name = "DateOfEntryOrExit";
             DateOfEntryOrExit.Size = new Size(323, 43);
@@ -337,26 +338,26 @@
             dataGridView1.BackgroundColor = SystemColors.ActiveBorder;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = SystemColors.ActiveBorder;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.ActiveBorder;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { totalEntrada, totalSaida, totalRestante });
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = SystemColors.Window;
-            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle11.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Window;
-            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Window;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
             dataGridView1.GridColor = Color.Green;
-            dataGridView1.Location = new Point(11, 508);
+            dataGridView1.Location = new Point(19, 508);
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
@@ -370,11 +371,11 @@
             // 
             // totalEntrada
             // 
-            dataGridViewCellStyle8.ForeColor = Color.Black;
-            dataGridViewCellStyle8.Format = "C2";
-            dataGridViewCellStyle8.NullValue = "0,00";
-            dataGridViewCellStyle8.SelectionForeColor = Color.Black;
-            totalEntrada.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = "0,00";
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            totalEntrada.DefaultCellStyle = dataGridViewCellStyle2;
             totalEntrada.HeaderText = "Entrada";
             totalEntrada.MinimumWidth = 6;
             totalEntrada.Name = "totalEntrada";
@@ -382,11 +383,11 @@
             // 
             // totalSaida
             // 
-            dataGridViewCellStyle9.ForeColor = Color.Black;
-            dataGridViewCellStyle9.Format = "C2";
-            dataGridViewCellStyle9.NullValue = "0,00";
-            dataGridViewCellStyle9.SelectionForeColor = Color.Black;
-            totalSaida.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = "0,00";
+            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
+            totalSaida.DefaultCellStyle = dataGridViewCellStyle3;
             totalSaida.HeaderText = "Saida";
             totalSaida.MinimumWidth = 6;
             totalSaida.Name = "totalSaida";
@@ -394,11 +395,11 @@
             // 
             // totalRestante
             // 
-            dataGridViewCellStyle10.ForeColor = Color.Black;
-            dataGridViewCellStyle10.Format = "C2";
-            dataGridViewCellStyle10.NullValue = "0,00";
-            dataGridViewCellStyle10.SelectionForeColor = Color.Black;
-            totalRestante.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = "0,00";
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            totalRestante.DefaultCellStyle = dataGridViewCellStyle4;
             totalRestante.HeaderText = "Saldo";
             totalRestante.MinimumWidth = 6;
             totalRestante.Name = "totalRestante";
@@ -425,76 +426,6 @@
             dvPlanner.CellValueChanged += dvPlanner_CellValueChanged;
             dvPlanner.RowLeave += dvPlanner_RowLeave;
             dvPlanner.RowValidated += dvPlanner_RowValidated;
-            // 
-            // Id
-            // 
-            Id.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            Id.Frozen = true;
-            Id.HeaderText = "Id";
-            Id.MinimumWidth = 6;
-            Id.Name = "Id";
-            Id.ReadOnly = true;
-            Id.Visible = false;
-            Id.Width = 125;
-            // 
-            // Descricao
-            // 
-            Descricao.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            Descricao.FillWeight = 30F;
-            Descricao.Frozen = true;
-            Descricao.HeaderText = "Descrição";
-            Descricao.MinimumWidth = 6;
-            Descricao.Name = "Descricao";
-            Descricao.Width = 217;
-            // 
-            // Valor
-            // 
-            Valor.FillWeight = 10F;
-            Valor.HeaderText = "Valor";
-            Valor.MinimumWidth = 6;
-            Valor.Name = "Valor";
-            // 
-            // Data
-            // 
-            Data.FillWeight = 20F;
-            Data.HeaderText = "Data";
-            Data.MinimumWidth = 6;
-            Data.Name = "Data";
-            // 
-            // Tipo
-            // 
-            Tipo.FillWeight = 15F;
-            Tipo.HeaderText = "Tipo";
-            Tipo.MinimumWidth = 6;
-            Tipo.Name = "Tipo";
-            Tipo.Resizable = DataGridViewTriState.True;
-            // 
-            // Category
-            // 
-            Category.DataPropertyName = "CategoryId";
-            Category.FillWeight = 20F;
-            Category.HeaderText = "Categoria";
-            Category.MinimumWidth = 6;
-            Category.Name = "Category";
-            Category.Resizable = DataGridViewTriState.True;
-            Category.SortMode = DataGridViewColumnSortMode.Automatic;
-            // 
-            // btnDeleteTransaction
-            // 
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = Color.Red;
-            dataGridViewCellStyle12.ForeColor = Color.Black;
-            dataGridViewCellStyle12.Padding = new Padding(2);
-            dataGridViewCellStyle12.SelectionBackColor = Color.Red;
-            dataGridViewCellStyle12.SelectionForeColor = Color.Black;
-            btnDeleteTransaction.DefaultCellStyle = dataGridViewCellStyle12;
-            btnDeleteTransaction.FillWeight = 5F;
-            btnDeleteTransaction.FlatStyle = FlatStyle.Flat;
-            btnDeleteTransaction.HeaderText = "Deletar";
-            btnDeleteTransaction.MinimumWidth = 6;
-            btnDeleteTransaction.Name = "btnDeleteTransaction";
-            btnDeleteTransaction.Text = "X";
-            btnDeleteTransaction.UseColumnTextForButtonValue = true;
             // 
             // boxRadio1
             // 
@@ -606,6 +537,76 @@
             categoryBindingSource1.DataSource = typeof(Finance_Project.Model.Entities.Category);
             categoryBindingSource1.CurrentChanged += categoryBindingSource1_CurrentChanged;
             // 
+            // Id
+            // 
+            Id.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            Id.Frozen = true;
+            Id.HeaderText = "Id";
+            Id.MinimumWidth = 6;
+            Id.Name = "Id";
+            Id.ReadOnly = true;
+            Id.Visible = false;
+            Id.Width = 125;
+            // 
+            // Descricao
+            // 
+            Descricao.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            Descricao.FillWeight = 40F;
+            Descricao.Frozen = true;
+            Descricao.HeaderText = "Descrição";
+            Descricao.MinimumWidth = 6;
+            Descricao.Name = "Descricao";
+            Descricao.Width = 217;
+            // 
+            // Valor
+            // 
+            Valor.FillWeight = 10F;
+            Valor.HeaderText = "Valor";
+            Valor.MinimumWidth = 6;
+            Valor.Name = "Valor";
+            // 
+            // Data
+            // 
+            Data.FillWeight = 10F;
+            Data.HeaderText = "Data";
+            Data.MinimumWidth = 6;
+            Data.Name = "Data";
+            // 
+            // Tipo
+            // 
+            Tipo.FillWeight = 15F;
+            Tipo.HeaderText = "Tipo";
+            Tipo.MinimumWidth = 6;
+            Tipo.Name = "Tipo";
+            Tipo.Resizable = DataGridViewTriState.True;
+            // 
+            // Category
+            // 
+            Category.DataPropertyName = "CategoryId";
+            Category.FillWeight = 20F;
+            Category.HeaderText = "Categoria";
+            Category.MinimumWidth = 6;
+            Category.Name = "Category";
+            Category.Resizable = DataGridViewTriState.True;
+            Category.SortMode = DataGridViewColumnSortMode.Automatic;
+            // 
+            // btnDeleteTransaction
+            // 
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = Color.Red;
+            dataGridViewCellStyle6.ForeColor = Color.Black;
+            dataGridViewCellStyle6.Padding = new Padding(2);
+            dataGridViewCellStyle6.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
+            btnDeleteTransaction.DefaultCellStyle = dataGridViewCellStyle6;
+            btnDeleteTransaction.FillWeight = 5F;
+            btnDeleteTransaction.FlatStyle = FlatStyle.Flat;
+            btnDeleteTransaction.HeaderText = "Deletar";
+            btnDeleteTransaction.MinimumWidth = 6;
+            btnDeleteTransaction.Name = "btnDeleteTransaction";
+            btnDeleteTransaction.Text = "X";
+            btnDeleteTransaction.UseColumnTextForButtonValue = true;
+            // 
             // Planner
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -683,6 +684,10 @@
         private Label lbla;
         private DateTimePicker dateFilterStart;
         private BindingSource categoryBindingSource1;
+        private Button btn_limpar;
+        private DataGridViewTextBoxColumn totalEntrada;
+        private DataGridViewTextBoxColumn totalSaida;
+        private DataGridViewTextBoxColumn totalRestante;
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn Descricao;
         private DataGridViewTextBoxColumn Valor;
@@ -690,9 +695,5 @@
         private DataGridViewTextBoxColumn Tipo;
         private DataGridViewComboBoxColumn Category;
         private DataGridViewButtonColumn btnDeleteTransaction;
-        private Button btn_limpar;
-        private DataGridViewTextBoxColumn totalEntrada;
-        private DataGridViewTextBoxColumn totalSaida;
-        private DataGridViewTextBoxColumn totalRestante;
     }
 }
