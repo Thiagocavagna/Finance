@@ -63,15 +63,15 @@ Adicione algumas capturas de tela do seu aplicativo aqui.
 ### Arquitetura
 O sistema é projetado usando o padrão MVC (Model-View-Controller):
 
-- **Modelo: Contém as entidades de dados (User, Category, Transaction) e o contexto do banco de dados (FinanceDbContext).**
-- **Visualização: Windows Forms usados para interagir com o usuário.**
-- **Controlador: Gerencia a interação entre a visualização e o modelo, manipulando a entrada do usuário e atualizando o modelo.**
+- **Modelo:** Contém as entidades de dados (User, Category, Transaction) e o contexto do banco de dados (FinanceDbContext).
+- **Visualização:** Windows Forms usados para interagir com o usuário.
+- **Controlador:** Gerencia a interação entre a visualização e o modelo, manipulando a entrada do usuário e atualizando o modelo.
   
 ### Estrutura do Projeto
-- **Finance.Model: Contém os modelos de dados e o contexto do banco de dados.**
-- **Finance.View: Contém os Windows Forms.**
-- **Finance.Controller: Contém os controladores para manipulação da lógica de negócios.**
-- **Finance.Data: Contém as classes de repositório para acesso a dados.**
+- **Finance.Model:** Contém os modelos de dados e o contexto do banco de dados.
+- **Finance.View:** Contém os Windows Forms.**
+- **Finance.Controller:** Contém os controladores para manipulação da lógica de negócios.
+- **Finance.Data:** Contém as classes de repositório para acesso a dados.
   
 ### Contribuindo
 1. **Faça um fork do repositório.**
