@@ -31,7 +31,7 @@ O Sistema de Gerenciamento Financeiro é um aplicativo Windows Forms projetado p
 2. **Configurar o Banco de Dados**
 
 - **Crie um novo banco de dados no SQL Server.**
-- **Atualize a string de conexão no FinanceDbContext com os detalhes do seu banco de dados.**
+- **Atualize a string de conexão no appSettings com os detalhes do seu banco de dados.**
 
 3. **Compilar a Solução**
 - **Abra a solução no Visual Studio.**
@@ -54,7 +54,7 @@ O Sistema de Gerenciamento Financeiro é um aplicativo Windows Forms projetado p
 
 ### Visualizar Transações
 1. **As transações são exibidas em um DataGridView no formulário principal.**
-2. **Você pode editar os valores diretamente no DataGridView.**
+2. **Você pode editar os valores diretamente no DataGridView. Para salvar a alteração, ao editar uma colina, apertar a tecla TAB ou clicar na proxima coluna, se sair daquela linha as alterações não serão salvas.**
 3. **Use o botão de exclusão para remover transações.**
  
 ### Capturas de Tela
