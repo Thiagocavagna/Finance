@@ -58,7 +58,9 @@ O Sistema de Gerenciamento Financeiro é um aplicativo Windows Forms projetado p
 3. **Use o botão de exclusão para remover transações.**
  
 ### Capturas de Tela
-Adicione algumas capturas de tela do seu aplicativo aqui.
+![Tela Inicial](icons/PLANNER.png)
+![Tela Inicial](icons/PLANNER-CATEGORY.png)
+![Tela Inicial](icons/PLANNER-UPDATEPASSWORD.png)
 
 ### Arquitetura
 O sistema é projetado usando o padrão MVC (Model-View-Controller):
