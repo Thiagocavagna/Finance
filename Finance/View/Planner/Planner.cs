@@ -29,7 +29,6 @@ namespace Finance.View.Planner
             LoadCategoriesIntoComboBoxColumn();
             InitializeFilters();
             LoadDataIntoDataGridView();
-            LoadTransactionType();
         }
 
         private void Planner_Load(object sender, EventArgs e)
@@ -77,18 +76,7 @@ namespace Finance.View.Planner
             cmbFilterCategory.DataSource = categoriesFilter;
             cmbFilterCategory.DisplayMember = "Name";
             cmbFilterCategory.ValueMember = "Id";
-        }
-
-        public void LoadTransactionType()
-        {
-            //cmb_Type.ValueType = typeof(TransactionType);
-            //cmb_Type.ValueMember = "Value";
-            //cmb_Type.DisplayMember = "TransactionType";
-            //cmb_Type.DataSource = new TransactionType[]
-            //    { TransactionType.Expense, TransactionType.Receipts }
-            //    .Select(value => new { Display = value.ToString(), Value = value })
-            //    .ToList();
-        }
+        }    
 
         private void EventoLoadCategory(object sender, EventArgs e)
         {
@@ -203,7 +191,6 @@ namespace Finance.View.Planner
                     return;
                 }
 
-                //TODO: retornar um result
                 _transactionController.SaveTransaction(description, amount, registerDate, transactionType, category);
                 txtDescription.Text = "";
                 num_amount.Value = 0;
@@ -218,6 +205,11 @@ namespace Finance.View.Planner
             if (string.IsNullOrWhiteSpace(txtDescription.Text))
             {
                 errorProvider1.SetError(txtDescription, "A descrição não pode estar vazia.");
+                e.Cancel = _shouldValidate;
+            }
+            else if (txtDescription.Text.Length > 100)
+            {
+                errorProvider1.SetError(txtDescription, "A descrição não pode ter mais de 100 caracteres.");
                 e.Cancel = _shouldValidate;
             }
             else
@@ -323,6 +315,12 @@ namespace Finance.View.Planner
         {
             DataGridViewRow editedRow = dvPlanner.Rows[rowIndex];
 
+            if (!DateTime.TryParse(editedRow.Cells["Data"].Value.ToString(), out var registerDate))
+            {
+                MessageBox.Show("Data inválida.");
+                return;
+            }
+
             if (editedRow.Cells["Id"].Value == null || editedRow.Cells["Id"].Value == DBNull.Value)
             {
                 return;
@@ -345,7 +343,6 @@ namespace Finance.View.Planner
             }
 
             var description = editedRow.Cells["Descricao"].Value.ToString();
-            var registerDate = Convert.ToDateTime(editedRow.Cells["Data"].Value);
             var type = (TransactionType)Enum.Parse(typeof(TransactionType), editedRow.Cells["cmb_Type"]?.Value?.ToString());
 
 
@@ -362,6 +359,9 @@ namespace Finance.View.Planner
 
             if (result.HasMessage)
                 MessageBox.Show(result.Message);
+
+            //if(result.Success)
+            //    LoadDataIntoDataGridView(); //TODO: verificar para chamar esse método, está dando erro!
         }
 
         private void dvPlanner_RowLeave(object sender, DataGridViewCellEventArgs e)

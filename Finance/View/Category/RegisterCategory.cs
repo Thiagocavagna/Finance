@@ -1,16 +1,4 @@
-﻿using Finance.Data;
-using Finance.Data.Repositories;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+﻿using System.ComponentModel;
 
 namespace Finance.View.TCategory
 {
@@ -71,6 +59,11 @@ namespace Finance.View.TCategory
                 errorCategory.SetError(txtNameCategory, "Campo obrigatório");
                 e.Cancel = _shouldValidate;
             }
+            else if (txtNameCategory.Text.Length > 100)
+            {
+                errorCategory.SetError(txtNameCategory, "A descrição não pode ter mais de 100 caracteres.");
+                e.Cancel = _shouldValidate;
+            }
             else
             {
                 errorCategory.SetError(txtNameCategory, null);
@@ -82,6 +75,11 @@ namespace Finance.View.TCategory
             if(string.IsNullOrEmpty(txtDescriptionCategory.Text)) {
                 txtDescriptionCategory.Focus();
                 errorCategory.SetError(txtDescriptionCategory, "Campo obrigatório");
+                e.Cancel = _shouldValidate;
+            }
+            else if (txtDescriptionCategory.Text.Length > 200)
+            {
+                errorCategory.SetError(txtDescriptionCategory, "A descrição não pode ter mais de 200 caracteres.");
                 e.Cancel = _shouldValidate;
             }
             else

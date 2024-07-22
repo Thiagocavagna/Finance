@@ -62,6 +62,11 @@ namespace MeuProjeto
                 errorProvider.SetError(txtName, "Campo de nome não pode estar vazio.");
                 e.Cancel = _shouldValidate;
             }
+            else if (nome.Length > 100)  
+            {
+                errorProvider.SetError(txtName, "Nome  não pode ter mais de 100 caracteres.");
+                e.Cancel = _shouldValidate;
+            }
             else if (nome.Length < 3)
             {
                 errorProvider.SetError(txtName, "Nome deve conter pelo menos 3 caracteres.");
@@ -80,11 +85,17 @@ namespace MeuProjeto
                 errorProvider.SetError(txtEmail, "Campo de e-mail não pode estar vazio.");
                 e.Cancel = _shouldValidate;
             }
+            else if (txtEmail.Text.Length < 3)
+            {
+                errorProvider.SetError(txtName, "Nome  não pode ter mais de 200 caracteres.");
+                e.Cancel = _shouldValidate;
+            }
             else if (!Validations.EmailIsValid(txtEmail.Text))
             {
                 errorProvider.SetError(txtEmail, "E-mail em formato inválido.");
                 e.Cancel = _shouldValidate;
             }
+
             else
             {
                 errorProvider.SetError(txtEmail, null);
@@ -100,7 +111,7 @@ namespace MeuProjeto
             }
             else if (!Validations.PasswordIsValid(txtPassword.Text))
             {
-                errorProvider.SetError(txtPassword, "Senha inválida. A senha deve conter no mínimo 8 caracteres e um caracter especial.");
+                errorProvider.SetError(txtPassword, "Senha inválida. A senha deve conter no mínimo 8 caracteres, uma letra maíscula e um caracter especial.");
                 if (_shouldValidate) e.Cancel = true;
             }
             else
