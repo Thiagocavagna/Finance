@@ -1,7 +1,8 @@
-﻿using Finance.Data.Repositories;
+﻿using Finance.Controller;
+using Finance.Data.Repositories;
 using Finance_Project.Model.Entities;
  
-public class CategoryController
+public class CategoryController : ControllerBase
 {
     private readonly CategoryRepository _repository;
 
@@ -18,8 +19,7 @@ public class CategoryController
     }
 
     public void AddCategory(string name, string description)
-    {
-        //TODO: validações?
+    {        
         var category = new Category { Name = name, Description = description };
         _repository.Add(category);
         _repository.Save();

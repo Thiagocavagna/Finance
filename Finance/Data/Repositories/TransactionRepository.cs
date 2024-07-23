@@ -10,12 +10,6 @@ public class TransactionRepository : BaseRepository, ITransactionRepository
     {
         _context.Transactions.Add(transaction);
     }
-
-    public void Save()
-    {
-        _context.SaveChanges();
-    }
-
     public List<Transaction> GetAll()
     {
         return _context.Transactions.Include(x => x.Category).ToList();

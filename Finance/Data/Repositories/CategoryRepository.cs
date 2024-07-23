@@ -33,11 +33,6 @@ namespace Finance.Data.Repositories
         {
             return _context.Categories.Any(x => x.Name == name);
         }
-        public bool Save()
-        {
-            var count = _context.SaveChanges();
 
-            return count > 0;
-        }
     }
 }

@@ -3,14 +3,8 @@ using Finance.Data.Repositories;
 using Finance.Helpers;
 using Finance.Helpers.Validations;
 using Finance_Project.Model.Entities;
-using System.Windows.Forms;
 
-public interface IUserController
-{
-
-}
-
-public class UserController : ControllerBase, IUserController
+public class UserController : ControllerBase
 {
     private readonly UserRepository _repository;
 

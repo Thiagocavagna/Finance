@@ -11,28 +11,12 @@ namespace Finance.View.Planner
 {    
     public partial class Planner : Form
     {
-        // Sobrescreve o método WndProc para interceptar mensagens do Windows
-        protected override void WndProc(ref Message m)
-        {
-            // Código para o clique duplo na barra de título
-            const int WM_NCLBUTTONDBLCLK = 0x00A3;
-
-            if (m.Msg == WM_NCLBUTTONDBLCLK)
-            {
-                // Ignorar a mensagem de clique duplo na barra de título
-                return;
-            }
-
-            // Chama o método WndProc da classe base
-            base.WndProc(ref m);
-        }
-
         private readonly CategoryController _controller;
         private readonly TransactionController _transactionController;
         private TransactionFilter _filter = new();
         private bool _shouldValidate;
         private bool isRowModified = false;
-
+        private bool isFirstLoad = true;
         public Planner()
         {
             InitializeComponent();
@@ -46,6 +30,8 @@ namespace Finance.View.Planner
             LoadCategoriesIntoComboBoxColumn();
             InitializeFilters();
             LoadDataIntoDataGridView();
+
+            isFirstLoad = false;            
         }
 
         private void Planner_Load(object sender, EventArgs e)
@@ -53,6 +39,18 @@ namespace Finance.View.Planner
             lblCurrentTime.Text = DateTime.Now.ToString("HH:mm:ss");
             timerCurrentTime.Start();
             rdEntrada.Checked = true;
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_NCLBUTTONDBLCLK = 0x00A3;
+
+            if (m.Msg == WM_NCLBUTTONDBLCLK)
+            {
+                return;
+            }
+
+            base.WndProc(ref m);
         }
 
         private void Planner_MaximizedBoundsChanged(object sender, EventArgs e)
@@ -276,7 +274,10 @@ namespace Finance.View.Planner
 
         private void dvPlanner_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            isRowModified = true;           
+            if(!isFirstLoad)
+            {
+                isRowModified = true;
+            }
         }
 
         private void dvPlanner_CellEndEdit(object sender, DataGridViewCellEventArgs e)

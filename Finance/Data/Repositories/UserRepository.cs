@@ -2,15 +2,8 @@
 
 namespace Finance.Data.Repositories
 {
-    public class UserRepository : IUserRepository
-    {
-        private readonly FinanceDbContext _context;
-
-        public UserRepository()
-        {
-            _context = new FinanceDbContext();
-        }
-
+    public class UserRepository : BaseRepository, IUserRepository
+    {        
         public void Register(User user)
         {
             _context.Users.Add(user);
@@ -25,14 +18,7 @@ namespace Finance.Data.Repositories
         }
 
         public bool IsUserRegistered()
-            => _context.Users.Any();
-
-        public bool Save()
-        {
-            var count = _context.SaveChanges();
-
-            return count > 0;
-        }
+            => _context.Users.Any();       
       
     }
     

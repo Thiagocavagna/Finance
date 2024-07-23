@@ -44,6 +44,7 @@ namespace Finance.View.TCategory
                 CategoryName = txtNameCategory.Text;
                 CategoryDescription = txtDescriptionCategory.Text;
                 _controller.AddCategory(CategoryName, CategoryDescription);
+                
                 CategoryAdded.Invoke(this, EventArgs.Empty);
                 txtDescriptionCategory.Text = "";
                 txtNameCategory.Text = "";

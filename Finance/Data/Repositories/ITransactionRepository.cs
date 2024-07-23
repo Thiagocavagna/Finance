@@ -1,4 +1,5 @@
-﻿using Finance.Model.Views;
+﻿using Finance.Model.Enumerations;
+using Finance.Model.Views;
 using Finance_Project.Model.Entities;
 
 namespace Finance.Data.Repositories
@@ -8,8 +9,10 @@ namespace Finance.Data.Repositories
         public void Add(Transaction transaction);
         public void Delete(Transaction transaction);
         public void Update(Transaction transaction);
+        Transaction GetById(Guid id);
         public List<Transaction> GetAll();
         List<Transaction> GetByFilter(TransactionFilter transactionFilter);
-        public void Save();
+        bool HasAnyTrasactionWithCategory(Guid categoryId);
+        bool Exists(string description, decimal amount, TransactionType type, Guid categoryId, DateTime registerDate);
     }
 }
