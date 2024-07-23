@@ -438,7 +438,6 @@
             dvPlanner.CellContentClick += dvPlanner_CellContentClick;
             dvPlanner.CellEndEdit += dvPlanner_CellEndEdit;
             dvPlanner.CellValueChanged += dvPlanner_CellValueChanged;
-            dvPlanner.RowLeave += dvPlanner_RowLeave;
             dvPlanner.RowValidated += dvPlanner_RowValidated;
             // 
             // boxRadio1

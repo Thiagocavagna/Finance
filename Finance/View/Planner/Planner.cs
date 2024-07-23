@@ -15,6 +15,7 @@ namespace Finance.View.Planner
         private readonly TransactionController _transactionController;
         private TransactionFilter _filter = new();
         private bool _shouldValidate;
+        private bool isRowModified = false;
 
         public Planner()
         {
@@ -257,7 +258,7 @@ namespace Finance.View.Planner
 
         private void dvPlanner_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-
+            isRowModified = true;           
         }
 
         private void dvPlanner_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -308,7 +309,11 @@ namespace Finance.View.Planner
 
         private void dvPlanner_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (isRowModified)
+            {
+                SaveRow(e.RowIndex);
+                isRowModified = false;
+            }
         }
 
         private void SaveRow(int rowIndex)
@@ -360,17 +365,9 @@ namespace Finance.View.Planner
             if (result.HasMessage)
                 MessageBox.Show(result.Message);
 
-            //if(result.Success)
-            //    LoadDataIntoDataGridView(); //TODO: verificar para chamar esse método, está dando erro!
-        }
-
-        private void dvPlanner_RowLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dvPlanner.IsCurrentRowDirty)
-            {
-                SaveRow(e.RowIndex);
-            }
-        }
+            if (result.Success)
+                this.BeginInvoke(LoadDataIntoDataGridView);            
+        }     
 
         private void dateFilterStart_ValueChanged(object sender, EventArgs e)
         {
