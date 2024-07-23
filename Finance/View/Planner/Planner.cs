@@ -126,6 +126,7 @@ namespace Finance.View.Planner
                 _controller.RemoveCategory(selectedCategory);
                 LoadCategories();
                 LoadCategoriesIntoComboBoxColumn();
+                LoadFilterCategories();
                 cmbCategory.Text = "";
             }
         }
