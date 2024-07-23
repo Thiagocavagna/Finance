@@ -60,6 +60,13 @@
             totalSaida = new DataGridViewTextBoxColumn();
             totalRestante = new DataGridViewTextBoxColumn();
             dvPlanner = new DataGridView();
+            Id = new DataGridViewTextBoxColumn();
+            Descricao = new DataGridViewTextBoxColumn();
+            Valor = new DataGridViewTextBoxColumn();
+            Data = new DataGridViewTextBoxColumn();
+            cmb_Type = new DataGridViewComboBoxColumn();
+            Category = new DataGridViewComboBoxColumn();
+            btnDeleteTransaction = new DataGridViewButtonColumn();
             boxRadio1 = new BoxRadio();
             btn_limpar = new Button();
             lbla = new Label();
@@ -72,13 +79,6 @@
             timerCurrentTime = new System.Windows.Forms.Timer(components);
             errorProvider1 = new ErrorProvider(components);
             categoryBindingSource1 = new BindingSource(components);
-            Id = new DataGridViewTextBoxColumn();
-            Descricao = new DataGridViewTextBoxColumn();
-            Valor = new DataGridViewTextBoxColumn();
-            Data = new DataGridViewTextBoxColumn();
-            cmb_Type = new DataGridViewComboBoxColumn();
-            Category = new DataGridViewComboBoxColumn();
-            btnDeleteTransaction = new DataGridViewButtonColumn();
             menuStrip1.SuspendLayout();
             PainelEntradaSaida.SuspendLayout();
             PainelFundoBranco.SuspendLayout();
@@ -440,6 +440,79 @@
             dvPlanner.CellValueChanged += dvPlanner_CellValueChanged;
             dvPlanner.RowValidated += dvPlanner_RowValidated;
             // 
+            // Id
+            // 
+            Id.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            Id.Frozen = true;
+            Id.HeaderText = "Id";
+            Id.MinimumWidth = 6;
+            Id.Name = "Id";
+            Id.ReadOnly = true;
+            Id.Visible = false;
+            Id.Width = 125;
+            // 
+            // Descricao
+            // 
+            Descricao.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            Descricao.FillWeight = 40F;
+            Descricao.Frozen = true;
+            Descricao.HeaderText = "Descrição";
+            Descricao.MinimumWidth = 6;
+            Descricao.Name = "Descricao";
+            Descricao.Width = 217;
+            // 
+            // Valor
+            // 
+            Valor.FillWeight = 10F;
+            Valor.HeaderText = "Valor";
+            Valor.MinimumWidth = 6;
+            Valor.Name = "Valor";
+            // 
+            // Data
+            // 
+            Data.FillWeight = 10F;
+            Data.HeaderText = "Data";
+            Data.MinimumWidth = 6;
+            Data.Name = "Data";
+            // 
+            // cmb_Type
+            // 
+            cmb_Type.DataPropertyName = "Type";
+            cmb_Type.FillWeight = 15F;
+            cmb_Type.HeaderText = "Tipo";
+            cmb_Type.Items.AddRange(new object[] { "Entrada", "Saida" });
+            cmb_Type.MinimumWidth = 6;
+            cmb_Type.Name = "cmb_Type";
+            cmb_Type.Resizable = DataGridViewTriState.True;
+            cmb_Type.SortMode = DataGridViewColumnSortMode.Automatic;
+            // 
+            // Category
+            // 
+            Category.DataPropertyName = "CategoryId";
+            Category.FillWeight = 20F;
+            Category.HeaderText = "Categoria";
+            Category.MinimumWidth = 6;
+            Category.Name = "Category";
+            Category.Resizable = DataGridViewTriState.True;
+            Category.SortMode = DataGridViewColumnSortMode.Automatic;
+            // 
+            // btnDeleteTransaction
+            // 
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = Color.Red;
+            dataGridViewCellStyle6.ForeColor = Color.Black;
+            dataGridViewCellStyle6.Padding = new Padding(2);
+            dataGridViewCellStyle6.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
+            btnDeleteTransaction.DefaultCellStyle = dataGridViewCellStyle6;
+            btnDeleteTransaction.FillWeight = 5F;
+            btnDeleteTransaction.FlatStyle = FlatStyle.Flat;
+            btnDeleteTransaction.HeaderText = "Deletar";
+            btnDeleteTransaction.MinimumWidth = 6;
+            btnDeleteTransaction.Name = "btnDeleteTransaction";
+            btnDeleteTransaction.Text = "X";
+            btnDeleteTransaction.UseColumnTextForButtonValue = true;
+            // 
             // boxRadio1
             // 
             boxRadio1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -556,79 +629,6 @@
             categoryBindingSource1.DataSource = typeof(Finance_Project.Model.Entities.Category);
             categoryBindingSource1.CurrentChanged += categoryBindingSource1_CurrentChanged;
             // 
-            // Id
-            // 
-            Id.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            Id.Frozen = true;
-            Id.HeaderText = "Id";
-            Id.MinimumWidth = 6;
-            Id.Name = "Id";
-            Id.ReadOnly = true;
-            Id.Visible = false;
-            Id.Width = 125;
-            // 
-            // Descricao
-            // 
-            Descricao.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            Descricao.FillWeight = 40F;
-            Descricao.Frozen = true;
-            Descricao.HeaderText = "Descrição";
-            Descricao.MinimumWidth = 6;
-            Descricao.Name = "Descricao";
-            Descricao.Width = 217;
-            // 
-            // Valor
-            // 
-            Valor.FillWeight = 10F;
-            Valor.HeaderText = "Valor";
-            Valor.MinimumWidth = 6;
-            Valor.Name = "Valor";
-            // 
-            // Data
-            // 
-            Data.FillWeight = 10F;
-            Data.HeaderText = "Data";
-            Data.MinimumWidth = 6;
-            Data.Name = "Data";
-            // 
-            // cmb_Type
-            // 
-            cmb_Type.DataPropertyName = "Type";
-            cmb_Type.FillWeight = 15F;
-            cmb_Type.HeaderText = "Tipo";
-            cmb_Type.Items.AddRange(new object[] { "Entrada", "Saida" });
-            cmb_Type.MinimumWidth = 6;
-            cmb_Type.Name = "cmb_Type";
-            cmb_Type.Resizable = DataGridViewTriState.True;
-            cmb_Type.SortMode = DataGridViewColumnSortMode.Automatic;
-            // 
-            // Category
-            // 
-            Category.DataPropertyName = "CategoryId";
-            Category.FillWeight = 20F;
-            Category.HeaderText = "Categoria";
-            Category.MinimumWidth = 6;
-            Category.Name = "Category";
-            Category.Resizable = DataGridViewTriState.True;
-            Category.SortMode = DataGridViewColumnSortMode.Automatic;
-            // 
-            // btnDeleteTransaction
-            // 
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = Color.Red;
-            dataGridViewCellStyle6.ForeColor = Color.Black;
-            dataGridViewCellStyle6.Padding = new Padding(2);
-            dataGridViewCellStyle6.SelectionBackColor = Color.Red;
-            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
-            btnDeleteTransaction.DefaultCellStyle = dataGridViewCellStyle6;
-            btnDeleteTransaction.FillWeight = 5F;
-            btnDeleteTransaction.FlatStyle = FlatStyle.Flat;
-            btnDeleteTransaction.HeaderText = "Deletar";
-            btnDeleteTransaction.MinimumWidth = 6;
-            btnDeleteTransaction.Name = "btnDeleteTransaction";
-            btnDeleteTransaction.Text = "X";
-            btnDeleteTransaction.UseColumnTextForButtonValue = true;
-            // 
             // Planner
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -637,7 +637,7 @@
             ClientSize = new Size(1119, 646);
             Controls.Add(PainelFundoBranco);
             Controls.Add(menuStrip1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             MainMenuStrip = menuStrip1;
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;

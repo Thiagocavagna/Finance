@@ -11,6 +11,22 @@ namespace Finance.View.Planner
 {    
     public partial class Planner : Form
     {
+        // Sobrescreve o método WndProc para interceptar mensagens do Windows
+        protected override void WndProc(ref Message m)
+        {
+            // Código para o clique duplo na barra de título
+            const int WM_NCLBUTTONDBLCLK = 0x00A3;
+
+            if (m.Msg == WM_NCLBUTTONDBLCLK)
+            {
+                // Ignorar a mensagem de clique duplo na barra de título
+                return;
+            }
+
+            // Chama o método WndProc da classe base
+            base.WndProc(ref m);
+        }
+
         private readonly CategoryController _controller;
         private readonly TransactionController _transactionController;
         private TransactionFilter _filter = new();
