@@ -109,6 +109,7 @@ namespace Finance.View.Planner
             {
                 _controller.RemoveCategory(selectedCategory);
                 LoadCategories();
+                LoadCategoriesIntoComboBoxColumn();
                 cmbCategory.Text = "";
             }
         }
@@ -339,9 +340,9 @@ namespace Finance.View.Planner
                 return;
             }
             var amountString = editedRow.Cells["Valor"]?.Value?.ToString();
-            var amount = amountString?.Replace("R$ ", "").Replace(",", ".");
+            amountString = amountString?.Replace("R$ ", "").Replace(".", "").Replace(",", ".");
 
-            if (!decimal.TryParse(amount, NumberStyles.Number, CultureInfo.InvariantCulture, out var amountDecimal))
+            if (!decimal.TryParse(amountString, NumberStyles.Any, CultureInfo.InvariantCulture, out var amountDecimal))
             {
                 MessageBox.Show("Valor inválido para o campo 'Valor'.");
                 return;
@@ -366,7 +367,8 @@ namespace Finance.View.Planner
                 MessageBox.Show(result.Message);
 
             if (result.Success)
-                this.BeginInvoke(LoadDataIntoDataGridView);            
+                this.BeginInvoke(LoadDataIntoDataGridView);
+                
         }     
 
         private void dateFilterStart_ValueChanged(object sender, EventArgs e)
